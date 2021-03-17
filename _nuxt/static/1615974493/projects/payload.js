@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/projects", {data:[{projects:[{title:"CYK-Algorithm",path:"\u002Fprojects\u002Fcyk-algorithm"}]}],fetch:{},mutations:[]});
