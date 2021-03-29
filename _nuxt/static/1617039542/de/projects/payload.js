@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/de/projects", {data:[{projects:[{description:"Simple editor for directed graphs, built with D3.js.",title:"Graph Editor",path:"\u002Fde\u002Fprojects\u002Fgraph-editor"}]}],fetch:{},mutations:[]});
