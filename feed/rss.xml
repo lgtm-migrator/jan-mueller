@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Jan&apos;s Blog</title>
+        <link>https://jan-mueller.at/blog</link>
+        <description>Software engineering and computer science.</description>
+        <lastBuildDate>Wed, 07 Apr 2021 10:29:08 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>https://github.com/nuxt-community/feed-module</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Nuxt, Vue and TypeScript]]></title>
+            <link>https://jan-mueller.at/blog/nuxt-vue-and-typescript</link>
+            <guid>https://jan-mueller.at/blog/nuxt-vue-and-typescript</guid>
+            <pubDate>Wed, 17 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[My early experiences and troubles with the creation of a blog using Nuxt Content.]]></description>
+            <content:encoded><![CDATA[<h2>Routing</h2>
+<p>After following an <a href="https://nuxtjs.org/blog/creating-blog-with-nuxt-content">official guide</a> to get started, I had weird issues with routing.
+My problem was the following project structure:</p>
+<pre><code>├── pages
+│   ├── index.vue
+│   ├── blog.vue
+│   ├── blog
+│   │   └── _slug.vue
+</code></pre>
+<p>When navigating from <code>/blog</code> to e.g. <code>/blog/hello-world</code>, the route changed and the component was instantiated, but the DOM didn't change.
+After some trial and error I found an easy fix (which I should have discovered earlier to be fair):
+Moving <code>blog.vue</code> to <code>/blog/index.vue</code>, as seen below.</p>
+<pre><code>├── pages
+│   ├── index.vue
+│   ├── blog
+│   │   ├── index.vue
+│   │   └── _slug.vue
+</code></pre>
+<h2>Problems with type checking</h2>
+<p>Even though I selected TypeScript in <code>create-nuxt-app</code>, the generated code wasn't set up properly.
+(<strong>Update:</strong> The problem has been fixed in a new version of <code>create-nuxt-app</code>.)
+For one, the TypeScript dependency was missing in <code>package.json</code>.
+Furthermore, I replaced all <code>nuxt-ts</code> commands with <code>nuxt</code> since they were causing warnings.
+Components declared as</p>
+<pre><code class="language-ts[pages/index.vue]">export default {
+  ...
+}
+</code></pre>
+<p>or</p>
+<pre><code class="language-ts[pages/index.vue]">import Vue from 'vue'
+
+export default Vue.extend({
+  ...
+})
+</code></pre>
+<p>had issues with type checking, resulting in errors during static site generation.
+Instead, I had to use the composition API.
+Since I am using Nuxt 2.x.x I had to resort to the <a href="https://composition-api.nuxtjs.org/">Nuxt Composition API</a>.</p>
+<pre><code class="language-ts[pages/index.vue]">import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
+  ...
+})
+</code></pre>
+<h2>Styling Markdown code with Prism</h2>
+<p>Turns out Vuetify's styles are colliding with Prism's.
+An easy fix is to unset the styles of the affected code blocks.</p>
+<pre><code class="language-scss[assets/style.scss]">.nuxt-content-highlight code {
+    all: unset !important;
+}
+</code></pre>
+<h2>Opinion and conclusion</h2>
+<p>So far using Nuxt was a refreshing experience.
+The possibility to iterate rather quickly compared to Angular is nice.
+Build times and nearly instantaneous changes are awesome.
+Though opaque (and in some cases missing) error messages resulted in an avoidable and cumbersome roadblock.
+After building multiple websites using the Nuxt, Vue, and TypeScript stack and learning about most of its quirks, my opinion has shifted to the positive.
+The speed of development and ease of UI development that comes with frameworks like Vuetify has resulted in a highly enjoyable experience.</p>
+]]></content:encoded>
+        </item>
+    </channel>
+</rss>

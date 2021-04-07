@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/blog", {data:[{posts:[{title:"Nuxt, Vue and TypeScript",path:"\u002Fblog\u002Fnuxt-vue-and-typescript",createdAt:"2021-04-06T16:14:29.400Z"}]}],fetch:{},mutations:[]});
