@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/documents/threadsafe-datastructures", {data:[{}],fetch:{},mutations:[]});
