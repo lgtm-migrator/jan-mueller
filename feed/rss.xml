@@ -4,7 +4,7 @@
         <title>Jan&apos;s Blog</title>
         <link>https://jan-mueller.at/blog</link>
         <description>Software engineering and computer science.</description>
-        <lastBuildDate>Mon, 16 Aug 2021 11:34:33 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 16 Aug 2021 13:40:22 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
         <language>en</language>
@@ -72,6 +72,77 @@ Build times and nearly instantaneous changes are awesome.
 Though opaque (and in some cases missing) error messages resulted in an avoidable and cumbersome roadblock.
 After building multiple websites using the Nuxt, Vue, and TypeScript stack and learning about most of its quirks, my opinion has shifted to the positive.
 The speed of development and ease of UI development that comes with frameworks like Vuetify has resulted in a highly enjoyable experience.</p>
+]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[Masonry layout in Vue 3]]></title>
+            <link>https://jan-mueller.at/blog/vue-masonry-wall</link>
+            <guid>https://jan-mueller.at/blog/vue-masonry-wall</guid>
+            <pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Responsive masonry layout with SSR support and zero dependencies for Vue 3.]]></description>
+            <content:encoded><![CDATA[<h2>Introduction</h2>
+<p>In quite a few of my Vue 2 projects I'm using the library <a href="https://github.com/fuxingloh/vue-masonry-wall">vue-masonry-wall</a>.
+Its ease-of-use and SSR support were key factors in my decision to use this library in particular.</p>
+<p>However, I'm currently in the progress of preparing my projects for the release of Nuxt 3 and the accompanying migration to Vue 3.
+Since I couldn't find a comparable masonry layout for Vue 3, I chose to create a new library based on <a href="https://github.com/fuxingloh">Fuxing Loh's</a> <code>vue-masonry-wall</code>.</p>
+<p>The result is <a href="https://github.com/DerYeger/vue-masonry-wall">@yeger/vue-masonry-wall</a>, a rewrite of the original library in TypeScript and Vue 3.
+It has no dependencies, resulting in a bundle size decrease of up to 54%.</p>
+<p>In addition, multiple issues have been fixed.
+Notably, padding is now considered while calculating the column count, and the removal of elements is now supported.</p>
+<h2>Installation</h2>
+<pre><code class="language-bash[bash]"># yarn
+$ yarn add @yeger/vue-masonry-wall
+
+# npm
+$ npm install @yeger/vue-masonry-wall
+</code></pre>
+<h2>Usage</h2>
+<p>First, you have to install the component like any other plugin.
+Consult the <a href="https://v3.vuejs.org/guide/plugins.html#using-a-plugin">Vue 3 documentation</a> for detailed information on installing plugins.</p>
+<pre><code class="language-ts[ts]">import { createApp } from 'vue'
+import MasonryWall from '@yeger/vue-masonry-wall'
+
+const app = createApp()
+
+app.use(MasonryWall)
+</code></pre>
+<p>Afterward, the component is available as <code>masonry-wall</code> or <code>MasonryWall</code>.
+The only required prop is <code>items</code>, an array of type <code>any</code>.
+Each element of <code>items</code> is passed to the default slot, alongside its index.
+The prop <code>columnWidth</code> takes in a <code>number</code>, specifying the targeted column width.
+It is used to calculate the column count but does not define the actual width of columns.
+Similarly, <code>padding</code> defines the padding between items in pixels and is respected while calculating the column count.
+Lastly, the prop <code>ssrColumns</code> can be used to specify the column count in server-side-rendering contexts.</p>
+<p>While every prop of the component is reactive, mutations to the <code>items</code> array will not update the layout.
+To force updates, assign a new array to the <code>items</code> prop.</p>
+<p>The following example demonstrates basic usage of the component.
+For an interactive demonstration, visit <a href="https://vue-masonry-wall.yeger.eu/">vue-masonry-wall.yeger.eu</a>.</p>
+<pre><code class="language-vue[vue]">&lt;template&gt;
+  &lt;masonry-wall :items=&quot;items&quot; :ssrColumns=&quot;1&quot; :columnWidth=&quot;300&quot; :padding=&quot;16&quot;&gt;
+    &lt;template #default=&quot;{ item, index }&quot;&gt;
+      &lt;div :style=&quot;`height: ${item.height}px`&quot;&gt;
+        &lt;h1&gt;{{ item.title }}&lt;/h1&gt;
+        &lt;span&gt;{{ item.description }}&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/template&gt;
+  &lt;/masonry-wall&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      items: [
+        { title: 'First', description: 'The first item.', height: 150 },
+        { title: 'Second', description: 'The second item.', height: 300 },
+        { title: 'Third', description: 'The second item.', height: 150 },
+        { title: 'Fourth', description: 'The second item.', height: 450 },
+      ]
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
 ]]></content:encoded>
         </item>
     </channel>
