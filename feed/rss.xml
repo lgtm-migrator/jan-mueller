@@ -4,7 +4,7 @@
         <title>Jan&apos;s Blog</title>
         <link>https://jan-mueller.at/blog</link>
         <description>Software engineering and computer science.</description>
-        <lastBuildDate>Tue, 17 Aug 2021 17:05:21 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Aug 2021 09:03:24 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
         <language>en</language>
@@ -133,7 +133,7 @@ Lastly, the prop <code>ssrColumns</code> can be used to specify the column count
 <p>While every prop of the component is reactive, mutations to the <code>items</code> array will not update the layout.
 To force updates, assign a new array to the <code>items</code> prop.</p>
 <p>The following example demonstrates basic usage of the component.
-For an interactive demonstrations, visit <a href="https://vue-masonry-wall.yeger.eu/">vue-masonry-wall.yeger.eu</a> or <a href="https://vue2-masonry-wall.yeger.eu/">vue2-masonry-wall.yeger.eu</a>.</p>
+For interactive demonstrations, visit <a href="https://vue-masonry-wall.yeger.eu/">vue-masonry-wall.yeger.eu</a> or <a href="https://vue2-masonry-wall.yeger.eu/">vue2-masonry-wall.yeger.eu</a>.</p>
 <pre><code class="language-vue[vue]">&lt;template&gt;
   &lt;masonry-wall :items=&quot;items&quot; :ssr-columns=&quot;1&quot; :column-width=&quot;300&quot; :padding=&quot;16&quot;&gt;
     &lt;template #default=&quot;{ item, index }&quot;&gt;
