@@ -4,12 +4,12 @@
         <title>Jan&apos;s Blog</title>
         <link>https://jan-mueller.at/blog</link>
         <description>Software engineering and computer science.</description>
-        <lastBuildDate>Sun, 05 Sep 2021 07:54:18 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 05 Sep 2021 08:33:21 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Nuxt, Vue and TypeScript]]></title>
+            <title><![CDATA[Creating a blog with Nuxt, Vue and TypeScript]]></title>
             <link>https://jan-mueller.at/blog/nuxt-vue-and-typescript</link>
             <guid>https://jan-mueller.at/blog/nuxt-vue-and-typescript</guid>
             <pubDate>Wed, 17 Mar 2021 00:00:00 GMT</pubDate>
