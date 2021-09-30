@@ -4,7 +4,7 @@
         <title>Jan&apos;s Blog</title>
         <link>https://jan-mueller.at/blog</link>
         <description>Software engineering and computer science.</description>
-        <lastBuildDate>Thu, 30 Sep 2021 10:38:46 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 30 Sep 2021 11:17:50 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
         <language>en</language>
@@ -90,7 +90,7 @@ It has no dependencies, resulting in a bundle size decrease of up to 54%.</p>
 <p>I also created <a href="https://github.com/DerYeger/vue2-masonry-wall">@yeger/vue2-masonry-wall</a> for use in Vue 2 projects.
 It, too, drops any dependencies, achieving a bundle size decrease of up to 40%</p>
 <p>In addition, multiple issues have been fixed.
-Notably, padding is now considered while calculating the column count, and the removal of elements is now supported.</p>
+Notably, spacing (<code>gap</code>) is now considered while calculating the column count, and the removal of elements is now supported.</p>
 <h2>Installation</h2>
 <h3>Vue 2</h3>
 <pre><code class="language-bash[bash]"># yarn
@@ -126,23 +126,23 @@ app.use(MasonryWall)
 <p>The component is available as <code>masonry-wall</code> or <code>MasonryWall</code>.
 The only required prop is <code>items</code>, an array of type <code>any</code>.
 Each element of <code>items</code> is passed to the default slot, alongside its index.
-The prop <code>columnWidth</code> takes in a <code>number</code>, specifying the targeted column width.
+The prop <code>column-width</code> takes in a <code>number</code>, specifying the targeted column width.
 It is used to calculate the column count but does not define the actual width of columns.
-Similarly, <code>padding</code> defines the padding between items in pixels and is respected while calculating the column count.
-Lastly, the prop <code>ssrColumns</code> can be used to specify the column count in server-side-rendering contexts.</p>
+Similarly, <code>gap</code> defines the gaps between items in pixels and is respected while calculating the column count.
+Lastly, the prop <code>ssr-columns</code> can be used to specify the column count in server-side-rendering contexts.</p>
 <p>While every prop of the component is reactive, mutations to the <code>items</code> array will not update the layout.
 To force updates, assign a new array to the <code>items</code> prop.</p>
+<h3>Example</h3>
 <p>The following example demonstrates basic usage of the component.
 For interactive demonstrations, visit <a href="https://vue-masonry-wall.yeger.eu/">vue-masonry-wall.yeger.eu</a> or <a href="https://vue2-masonry-wall.yeger.eu/">vue2-masonry-wall.yeger.eu</a>.</p>
 <pre><code class="language-vue[vue]">&lt;template&gt;
-  &lt;masonry-wall :items=&quot;items&quot; :ssr-columns=&quot;1&quot; :column-width=&quot;300&quot; :padding=&quot;16&quot;&gt;
-    &lt;template #default=&quot;{ item, index }&quot;&gt;
-      &lt;div :style=&quot;`height: ${item.height}px`&quot;&gt;
-        &lt;h1&gt;{{ item.title }}&lt;/h1&gt;
-        &lt;span&gt;{{ item.description }}&lt;/span&gt;
-      &lt;/div&gt;
+  &lt;MasonryWall :items=&quot;items&quot; :ssr-columns=&quot;1&quot; :column-width=&quot;300&quot; :gap=&quot;16&quot;&gt;
+    &lt;template #default=&quot;{ item }&quot;&gt;
+      &lt;div :style=&quot;{ height: `${item.height}px` }&quot;&gt;
+        {{ item.content }}
+      &lt;/pre&gt;
     &lt;/template&gt;
-  &lt;/masonry-wall&gt;
+  &lt;/MasonryWall&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
@@ -150,16 +150,18 @@ export default {
   data() {
     return {
       items: [
-        { title: 'First', description: 'The first item.', height: 150 },
-        { title: 'Second', description: 'The second item.', height: 300 },
-        { title: 'Third', description: 'The second item.', height: 150 },
-        { title: 'Fourth', description: 'The second item.', height: 450 },
+        { content: 'First', height: 150 },
+        { content: 'Second', height: 300 },
+        { content: 'Third', height: 150 },
+        { content: 'Fourth', height: 450 },
       ]
     }
   }
 }
 &lt;/script&gt;
 </code></pre>
+<h3>Result</h3>
+<p>&lt;MasonryWallDemo class=&quot;mb-4&quot;&gt;&lt;/MasonryWallDemo&gt;</p>
 ]]></content:encoded>
         </item>
     </channel>
