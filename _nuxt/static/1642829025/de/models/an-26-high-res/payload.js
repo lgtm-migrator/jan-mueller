@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/de/models/an-26-high-res", {data:[{}],fetch:{},mutations:[]});

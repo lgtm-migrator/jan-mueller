@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/de/documents/bachelor-thesis", {data:[{}],fetch:{},mutations:[]});
