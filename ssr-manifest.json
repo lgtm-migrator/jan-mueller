@@ -80,7 +80,7 @@
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.1753c418.js-unocss-hash.css": [],
+  "assets/app.a2249b52.js-unocss-hash.css": [],
   "node_modules/@intlify/shared/dist/shared.esm-bundler.js": [
     "/assets/vendor.df706fd8.js"
   ],
@@ -205,59 +205,58 @@
     "/assets/virtual_pwa-register.3deeaaee.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.305f238c.js",
+    "/assets/404.3a1a1bd2.js",
     "/assets/404.2b7a8886.css"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.305f238c.js",
+    "/assets/404.3a1a1bd2.js",
     "/assets/404.2b7a8886.css"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.305f238c.js",
+    "/assets/404.3a1a1bd2.js",
     "/assets/404.2b7a8886.css"
   ],
-  "assets/404.305f238c.js-unocss-hash.css": [
-    "/assets/404.305f238c.js",
+  "assets/404.3a1a1bd2.js-unocss-hash.css": [
+    "/assets/404.3a1a1bd2.js",
     "/assets/404.2b7a8886.css"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.3f993e89.js",
+    "/assets/fullscreen.ca5ca218.js",
     "/assets/fullscreen.8fc82dbb.css"
   ],
-  "assets/fullscreen.3f993e89.js-unocss-hash.css": [
-    "/assets/fullscreen.3f993e89.js",
+  "assets/fullscreen.ca5ca218.js-unocss-hash.css": [
+    "/assets/fullscreen.ca5ca218.js",
     "/assets/fullscreen.8fc82dbb.css"
-  ],
-  "src/pages/[...all].vue?vue&type=route&index=0&lang.yaml": [
-    "/assets/_...all_.ed88e7fe.js",
-    "/assets/_...all_.83f4da1f.css"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.ed88e7fe.js",
+    "/assets/_...all_.da593bb3.js",
     "/assets/_...all_.83f4da1f.css"
   ],
-  "assets/_...all_.ed88e7fe.js-unocss-hash.css": [
-    "/assets/_...all_.ed88e7fe.js",
+  "assets/_...all_.da593bb3.js-unocss-hash.css": [
+    "/assets/_...all_.da593bb3.js",
     "/assets/_...all_.83f4da1f.css"
+  ],
+  "../../../../../@vite-plugin-pages/route-block": [
+    "/assets/route-block.b5bad31b.js"
   ],
   "src/pages/about.md?vue&type=style&index=0&scoped=true&lang.css": [
-    "/assets/about.1ce17530.js",
+    "/assets/about.548fc3cf.js",
     "/assets/about.c63a76a9.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.1ce17530.js",
+    "/assets/about.548fc3cf.js",
     "/assets/about.c63a76a9.css"
   ],
-  "assets/about.1ce17530.js-unocss-hash.css": [
-    "/assets/about.1ce17530.js",
+  "assets/about.548fc3cf.js-unocss-hash.css": [
+    "/assets/about.548fc3cf.js",
     "/assets/about.c63a76a9.css"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.a8de26b5.js",
+    "/assets/index.4172b1de.js",
     "/assets/index.bb6a74d7.css"
   ],
-  "assets/index.a8de26b5.js-unocss-hash.css": [
-    "/assets/index.a8de26b5.js",
+  "assets/index.4172b1de.js-unocss-hash.css": [
+    "/assets/index.4172b1de.js",
     "/assets/index.bb6a74d7.css"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
@@ -269,11 +268,11 @@
     "/assets/vue-masonry-wall.7c66e0a1.css"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.19ff7b67.js",
+    "/assets/index.4b759c43.js",
     "/assets/index.bb6a74d7.css"
   ],
-  "assets/index.19ff7b67.js-unocss-hash.css": [
-    "/assets/index.19ff7b67.js",
+  "assets/index.4b759c43.js-unocss-hash.css": [
+    "/assets/index.4b759c43.js",
     "/assets/index.bb6a74d7.css"
   ],
   "src/composables/documents.ts": [
@@ -282,28 +281,20 @@
   "src/composables/models.ts": [
     "/assets/models.4e6cc1b0.js"
   ],
-  "src/pages/files/documents/[name].vue?vue&type=route&index=0&lang.yaml": [
-    "/assets/_name_.d63cc566.js",
-    "/assets/_name_.4c4fe1c0.css"
-  ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.d63cc566.js",
+    "/assets/_name_.7560ea4d.js",
     "/assets/_name_.4c4fe1c0.css"
   ],
-  "assets/_name_.d63cc566.js-unocss-hash.css": [
-    "/assets/_name_.d63cc566.js",
+  "assets/_name_.7560ea4d.js-unocss-hash.css": [
+    "/assets/_name_.7560ea4d.js",
     "/assets/_name_.4c4fe1c0.css"
-  ],
-  "src/pages/files/models/[name].vue?vue&type=route&index=0&lang.yaml": [
-    "/assets/_name_.00a4f716.js",
-    "/assets/_name_.d4bafe98.css"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.00a4f716.js",
+    "/assets/_name_.68753007.js",
     "/assets/_name_.d4bafe98.css"
   ],
-  "assets/_name_.00a4f716.js-unocss-hash.css": [
-    "/assets/_name_.00a4f716.js",
+  "assets/_name_.68753007.js-unocss-hash.css": [
+    "/assets/_name_.68753007.js",
     "/assets/_name_.d4bafe98.css"
   ]
 }

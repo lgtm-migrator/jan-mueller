@@ -1,1 +1,0 @@
-import{d as o,u as n,o as s,b as a,t as c,g as r}from"./vendor.df706fd8.js";var t={};const i={class:"text-xl text-light"},f=o({setup(l){const{t:e}=n();return(p,u)=>(s(),a("div",i,c(r(e)("not-found")),1))}});typeof t=="function"&&t(f);export{f as default};
