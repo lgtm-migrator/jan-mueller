@@ -105,7 +105,7 @@
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.4cebe0e5.js-unocss-hash.css": [],
+  "assets/app.5d040b1c.js-unocss-hash.css": [],
   "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
     "/assets/virtual_pwa-register.0b4e155d.js"
   ],
@@ -113,74 +113,74 @@
     "/assets/virtual_pwa-register.0b4e155d.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.4f9ef228.js",
+    "/assets/404.b1353fe7.js",
     "/assets/404.2b7a8886.css"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.4f9ef228.js",
+    "/assets/404.b1353fe7.js",
     "/assets/404.2b7a8886.css"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.4f9ef228.js",
+    "/assets/404.b1353fe7.js",
     "/assets/404.2b7a8886.css"
   ],
-  "assets/404.4f9ef228.js-unocss-hash.css": [
-    "/assets/404.4f9ef228.js",
+  "assets/404.b1353fe7.js-unocss-hash.css": [
+    "/assets/404.b1353fe7.js",
     "/assets/404.2b7a8886.css"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.93d3a8ba.js",
+    "/assets/fullscreen.60d0ea02.js",
     "/assets/fullscreen.8fc82dbb.css"
   ],
-  "assets/fullscreen.93d3a8ba.js-unocss-hash.css": [
-    "/assets/fullscreen.93d3a8ba.js",
+  "assets/fullscreen.60d0ea02.js-unocss-hash.css": [
+    "/assets/fullscreen.60d0ea02.js",
     "/assets/fullscreen.8fc82dbb.css"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.4d9156d3.js",
+    "/assets/_...all_.452fe92f.js",
     "/assets/_...all_.83f4da1f.css"
   ],
-  "assets/_...all_.4d9156d3.js-unocss-hash.css": [
-    "/assets/_...all_.4d9156d3.js",
+  "assets/_...all_.452fe92f.js-unocss-hash.css": [
+    "/assets/_...all_.452fe92f.js",
     "/assets/_...all_.83f4da1f.css"
   ],
   "../../../../../@vite-plugin-pages/route-block": [
     "/assets/route-block.b5bad31b.js"
   ],
   "src/pages/about.md?vue&type=style&index=0&scoped=true&lang.css": [
-    "/assets/about.3a82f66e.js",
+    "/assets/about.10d128c1.js",
     "/assets/about.411f1de4.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.3a82f66e.js",
+    "/assets/about.10d128c1.js",
     "/assets/about.411f1de4.css"
   ],
-  "assets/about.3a82f66e.js-unocss-hash.css": [
-    "/assets/about.3a82f66e.js",
+  "assets/about.10d128c1.js-unocss-hash.css": [
+    "/assets/about.10d128c1.js",
     "/assets/about.411f1de4.css"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.3f3f6815.js",
+    "/assets/index.425816af.js",
     "/assets/index.bb6a74d7.css"
   ],
-  "assets/index.3f3f6815.js-unocss-hash.css": [
-    "/assets/index.3f3f6815.js",
+  "assets/index.425816af.js-unocss-hash.css": [
+    "/assets/index.425816af.js",
     "/assets/index.bb6a74d7.css"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
-    "/assets/vue-masonry-wall.0f0548cd.js",
+    "/assets/vue-masonry-wall.edf4b75a.js",
     "/assets/vue-masonry-wall.714cb63e.css"
   ],
-  "assets/vue-masonry-wall.0f0548cd.js-unocss-hash.css": [
-    "/assets/vue-masonry-wall.0f0548cd.js",
+  "assets/vue-masonry-wall.edf4b75a.js-unocss-hash.css": [
+    "/assets/vue-masonry-wall.edf4b75a.js",
     "/assets/vue-masonry-wall.714cb63e.css"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.16c38dab.js",
+    "/assets/index.deec9eb8.js",
     "/assets/index.bb6a74d7.css"
   ],
-  "assets/index.16c38dab.js-unocss-hash.css": [
-    "/assets/index.16c38dab.js",
+  "assets/index.deec9eb8.js-unocss-hash.css": [
+    "/assets/index.deec9eb8.js",
     "/assets/index.bb6a74d7.css"
   ],
   "src/composables/documents.ts": [
@@ -190,19 +190,19 @@
     "/assets/models.4e6cc1b0.js"
   ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.c4ab7038.js",
+    "/assets/_name_.2f9193e3.js",
     "/assets/_name_.4c4fe1c0.css"
   ],
-  "assets/_name_.c4ab7038.js-unocss-hash.css": [
-    "/assets/_name_.c4ab7038.js",
+  "assets/_name_.2f9193e3.js-unocss-hash.css": [
+    "/assets/_name_.2f9193e3.js",
     "/assets/_name_.4c4fe1c0.css"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.4042f033.js",
+    "/assets/_name_.0dddebe3.js",
     "/assets/_name_.d4bafe98.css"
   ],
-  "assets/_name_.4042f033.js-unocss-hash.css": [
-    "/assets/_name_.4042f033.js",
+  "assets/_name_.0dddebe3.js-unocss-hash.css": [
+    "/assets/_name_.0dddebe3.js",
     "/assets/_name_.d4bafe98.css"
   ]
 }
