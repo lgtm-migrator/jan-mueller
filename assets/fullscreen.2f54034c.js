@@ -1,1 +1,0 @@
-import{h as _,r as s,o as a,c as r,b as e,w as l,_ as f,f as i,g as m}from"./app.2600b251.js";const p={},u={class:"w-full h-full flex flex-col"};function d(x,h){const o=f,n=s("router-view"),t=i,c=m;return a(),r("div",u,[e(o),e(t,{class:"flex-1",style:{width:"calc(100% - 2rem)"}},{default:l(()=>[e(n)]),_:1}),e(c)])}var v=_(p,[["render",d]]);export{v as default};
