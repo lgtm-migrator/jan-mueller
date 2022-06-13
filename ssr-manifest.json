@@ -105,7 +105,7 @@
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.7d891bd9.js-unocss-hash.css": [],
+  "assets/app.f91554bf.js-unocss-hash.css": [],
   "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
     "/assets/virtual_pwa-register.80a10119.js"
   ],
@@ -113,48 +113,48 @@
     "/assets/virtual_pwa-register.80a10119.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.a012754c.js"
+    "/assets/404.c1b5ff1e.js"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.a012754c.js"
+    "/assets/404.c1b5ff1e.js"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.a012754c.js"
+    "/assets/404.c1b5ff1e.js"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.97cecb3c.js"
+    "/assets/fullscreen.02e6b2dc.js"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.806c3a34.js"
+    "/assets/_...all_.fb998ea6.js"
   ],
   "../../../../../@vite-plugin-pages/route-block": [
     "/assets/route-block.b5bad31b.js"
   ],
   "src/pages/about.md?vue&type=style&index=0&scoped=true&lang.css": [
-    "/assets/about.a0db400f.js",
+    "/assets/about.6ae9fe33.js",
     "/assets/about.ec7ba547.css"
   ],
   "src/pages/about.md?vue&type=style&index=1&lang.css": [
-    "/assets/about.a0db400f.js",
+    "/assets/about.6ae9fe33.js",
     "/assets/about.ec7ba547.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.a0db400f.js",
+    "/assets/about.6ae9fe33.js",
     "/assets/about.ec7ba547.css"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.956f49b3.js"
+    "/assets/index.6f92a905.js"
   ],
   "src/pages/blog/vue-masonry-wall.md?vue&type=style&index=0&lang.css": [
-    "/assets/vue-masonry-wall.6d874d52.js",
+    "/assets/vue-masonry-wall.19393d34.js",
     "/assets/vue-masonry-wall.4ec50bb9.css"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
-    "/assets/vue-masonry-wall.6d874d52.js",
+    "/assets/vue-masonry-wall.19393d34.js",
     "/assets/vue-masonry-wall.4ec50bb9.css"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.9f48cda9.js"
+    "/assets/index.5169a965.js"
   ],
   "src/composables/documents.ts": [
     "/assets/documents.23cf6091.js"
@@ -163,9 +163,9 @@
     "/assets/models.4e6cc1b0.js"
   ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.ceca2127.js"
+    "/assets/_name_.704d579f.js"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.0c750e8d.js"
+    "/assets/_name_.d18a24a8.js"
   ]
 }
