@@ -22,7 +22,7 @@
   "src/modules/pinia.ts": [],
   "vite/preload-helper": [],
   "src/modules/pwa.ts": [],
-  "node_modules/@yeger/vue-masonry-wall/dist/masonry-wall.es.js": [],
+  "node_modules/@yeger/vue-masonry-wall/dist/masonry-wall.es.mjs": [],
   "plugin-vue:export-helper": [],
   "src/components/Dot.vue": [],
   "src/components/Footer.vue": [],
@@ -94,7 +94,7 @@
   "src/components/Avatar.vue": [],
   "src/pages/index.vue": [],
   "../../../../../@vite-plugin-pages/generated-pages?id=virtual:generated-pages": [],
-  "node_modules/vue-router/dist/vue-router.esm-bundler.js": [],
+  "node_modules/vue-router/dist/vue-router.mjs": [],
   "node_modules/vite-ssg/dist/chunks/state.mjs": [],
   "node_modules/vite-ssg/dist/chunks/ClientOnly.mjs": [],
   "node_modules/vite-ssg/dist/index.mjs": [],
@@ -105,7 +105,7 @@
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.11626388.js-unocss-hash.css": [],
+  "assets/app.4ca294fe.js-unocss-hash.css": [],
   "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
     "/assets/virtual_pwa-register.80a10119.js"
   ],
@@ -113,39 +113,39 @@
     "/assets/virtual_pwa-register.80a10119.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.7f60b1f6.js"
+    "/assets/404.f0e737a9.js"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.7f60b1f6.js"
+    "/assets/404.f0e737a9.js"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.7f60b1f6.js"
+    "/assets/404.f0e737a9.js"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.a2e6999f.js"
+    "/assets/fullscreen.4dd1ab67.js"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.28434e9c.js"
+    "/assets/_...all_.300d7457.js"
   ],
   "../../../../../@vite-plugin-pages/route-block": [
     "/assets/route-block.b5bad31b.js"
   ],
   "src/pages/about.md?vue&type=style&index=0&scoped=true&lang.css": [
-    "/assets/about.db304e14.js",
+    "/assets/about.1db1205d.js",
     "/assets/about.843bc9b2.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.db304e14.js",
+    "/assets/about.1db1205d.js",
     "/assets/about.843bc9b2.css"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.a0d7f4b9.js"
+    "/assets/index.b00792e3.js"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
-    "/assets/vue-masonry-wall.fee97bd7.js"
+    "/assets/vue-masonry-wall.9fc276f6.js"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.724156ca.js"
+    "/assets/index.1f441e8f.js"
   ],
   "src/composables/documents.ts": [
     "/assets/documents.23cf6091.js"
@@ -154,9 +154,9 @@
     "/assets/models.4e6cc1b0.js"
   ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.28b62015.js"
+    "/assets/_name_.f86bd5b7.js"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.b35c6024.js"
+    "/assets/_name_.42f678bd.js"
   ]
 }
