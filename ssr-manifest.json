@@ -106,7 +106,7 @@
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.2de0f065.js-unocss-hash.css": [],
+  "assets/app.a3891ac2.js-unocss-hash.css": [],
   "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
     "/assets/virtual_pwa-register.80a10119.js"
   ],
@@ -114,39 +114,39 @@
     "/assets/virtual_pwa-register.80a10119.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.0e0f7cb3.js"
+    "/assets/404.16d85505.js"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.0e0f7cb3.js"
+    "/assets/404.16d85505.js"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.0e0f7cb3.js"
+    "/assets/404.16d85505.js"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.7c78c983.js"
+    "/assets/fullscreen.36759d3f.js"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.ae292754.js"
+    "/assets/_...all_.f0f091d3.js"
   ],
   "../../../../../@vite-plugin-pages/route-block": [
     "/assets/route-block.b5bad31b.js"
   ],
   "src/pages/about.md?vue&type=style&index=0&scoped=true&lang.css": [
-    "/assets/about.b6d760e0.js",
+    "/assets/about.68296faf.js",
     "/assets/about.843bc9b2.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.b6d760e0.js",
+    "/assets/about.68296faf.js",
     "/assets/about.843bc9b2.css"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.05352115.js"
+    "/assets/index.2efe6ee1.js"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
-    "/assets/vue-masonry-wall.f6e11d8b.js"
+    "/assets/vue-masonry-wall.4dc6507f.js"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.185cc290.js"
+    "/assets/index.a9949116.js"
   ],
   "src/composables/documents.ts": [
     "/assets/documents.23cf6091.js"
@@ -155,9 +155,9 @@
     "/assets/models.4e6cc1b0.js"
   ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.e0ea40d0.js"
+    "/assets/_name_.4d84caa1.js"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.f4113c8f.js"
+    "/assets/_name_.1bb1274a.js"
   ]
 }
