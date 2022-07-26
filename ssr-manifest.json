@@ -25,6 +25,7 @@
   "node_modules/@yeger/vue-masonry-wall/dist/masonry-wall.es.mjs": [],
   "\u0000plugin-vue:export-helper": [],
   "src/components/Dot.vue": [],
+  "src/types.ts": [],
   "src/components/Footer.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Main.vue": [],
   "~icons/carbon/logo-xing": [],
@@ -100,15 +101,16 @@
   "node_modules/vite-ssg/dist/chunks/ClientOnly.mjs": [],
   "node_modules/vite-ssg/dist/index.mjs": [],
   "node_modules/vue-marmoset-viewer/dist/vue-marmoset-viewer.es.js": [],
+  "node_modules/@yeger/page-views/dist/page-views.es.mjs": [],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
-  "src/App.vue?vue&type=style&index=0&scoped=395e8237&lang.css": [],
+  "src/App.vue?vue&type=style&index=0&scoped=f4cf8621&lang.css": [],
   "src/App.vue": [],
   "node_modules/@unocss/reset/normalize.css": [],
   "../../../../../__uno.css": [],
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.5d6c6ab6.js-unocss-hash.css": [],
+  "assets/app.840dea73.js-unocss-hash.css": [],
   "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
     "/assets/virtual_pwa-register.3ff79d29.js"
   ],
@@ -116,58 +118,58 @@
     "/assets/virtual_pwa-register.3ff79d29.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.da687694.js"
+    "/assets/404.c2bed03a.js"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.da687694.js"
+    "/assets/404.c2bed03a.js"
   ],
   "src/layouts/404.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/404.da687694.js"
+    "/assets/404.c2bed03a.js"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.da687694.js"
+    "/assets/404.c2bed03a.js"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.e3191239.js"
+    "/assets/fullscreen.261c31ae.js"
   ],
   "src/pages/[...all].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_...all_.f35050b4.js"
+    "/assets/_...all_.61542bdd.js"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.f35050b4.js"
+    "/assets/_...all_.61542bdd.js"
   ],
   "../../../../../@vite-plugin-pages/route-block": [
     "/assets/route-block.023af118.js"
   ],
   "src/pages/about.md?vue&type=script&setup=true&lang.ts": [
-    "/assets/about.a5e75337.js",
+    "/assets/about.cba8df35.js",
     "/assets/about.4742ab40.css"
   ],
   "src/pages/about.md?vue&type=style&index=0&scoped=aa55a1a9&lang.css": [
-    "/assets/about.a5e75337.js",
+    "/assets/about.cba8df35.js",
     "/assets/about.4742ab40.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.a5e75337.js",
+    "/assets/about.cba8df35.js",
     "/assets/about.4742ab40.css"
   ],
   "src/pages/blog/index.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index.190085ac.js"
+    "/assets/index.fc368bcf.js"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.190085ac.js"
+    "/assets/index.fc368bcf.js"
   ],
   "src/pages/blog/vue-masonry-wall.md?vue&type=script&setup=true&lang.ts": [
-    "/assets/vue-masonry-wall.24eb1529.js"
+    "/assets/vue-masonry-wall.e3963a75.js"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
-    "/assets/vue-masonry-wall.24eb1529.js"
+    "/assets/vue-masonry-wall.e3963a75.js"
   ],
   "src/pages/files/index.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index.1c0d1418.js"
+    "/assets/index.5dd3bf94.js"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.1c0d1418.js"
+    "/assets/index.5dd3bf94.js"
   ],
   "src/composables/documents.ts": [
     "/assets/documents.23cf6091.js"
@@ -176,15 +178,15 @@
     "/assets/models.4e6cc1b0.js"
   ],
   "src/pages/files/documents/[name].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_name_.98f26d5d.js"
+    "/assets/_name_.bfcf7742.js"
   ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.98f26d5d.js"
+    "/assets/_name_.bfcf7742.js"
   ],
   "src/pages/files/models/[name].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_name_.d0312b1a.js"
+    "/assets/_name_.a2c28734.js"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.d0312b1a.js"
+    "/assets/_name_.a2c28734.js"
   ]
 }
