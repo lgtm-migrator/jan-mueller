@@ -2,8 +2,6 @@
   "vite/modulepreload-polyfill": [],
   "locales/en.yml": [],
   "node_modules/@intlify/shared/dist/shared.esm-bundler.js": [],
-  "node_modules/@intlify/message-resolver/dist/message-resolver.esm-bundler.js": [],
-  "node_modules/@intlify/runtime/dist/runtime.esm-bundler.js": [],
   "node_modules/@intlify/message-compiler/dist/message-compiler.esm-bundler.js": [],
   "node_modules/@intlify/devtools-if/dist/devtools-if.esm-bundler.js": [],
   "node_modules/@intlify/core-base/dist/core-base.esm-bundler.js": [],
@@ -11,13 +9,18 @@
   "node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [],
   "node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js": [],
   "node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js": [],
+  "node_modules/@vue/devtools-api/lib/esm/env.js": [],
+  "node_modules/@vue/devtools-api/lib/esm/const.js": [],
+  "node_modules/@vue/devtools-api/lib/esm/time.js": [],
+  "node_modules/@vue/devtools-api/lib/esm/proxy.js": [],
+  "node_modules/@vue/devtools-api/lib/esm/index.js": [],
   "node_modules/vue-i18n/dist/vue-i18n.runtime.esm-bundler.js": [],
   "src/modules/i18n.ts": [],
   "\u0000commonjsHelpers.js": [],
   "\u0000/home/runner/work/jan-mueller/jan-mueller/node_modules/nprogress/nprogress.js?commonjs-module": [],
   "node_modules/nprogress/nprogress.js": [],
   "src/modules/nprogress.ts": [],
-  "node_modules/vue-demi/lib/index.mjs": [],
+  "node_modules/pinia/node_modules/vue-demi/lib/index.mjs": [],
   "node_modules/pinia/dist/pinia.esm-browser.js": [],
   "src/modules/pinia.ts": [],
   "\u0000vite/preload-helper": [],
@@ -103,73 +106,64 @@
   "node_modules/vue-marmoset-viewer/dist/vue-marmoset-viewer.es.js": [],
   "node_modules/@yeger/page-views/dist/page-views.es.mjs": [],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
-  "src/App.vue?vue&type=style&index=0&scoped=f4cf8621&lang.css": [],
-  "src/App.vue": [],
   "node_modules/@unocss/reset/normalize.css": [],
   "../../../../../__uno.css": [],
   "src/styles/main.css": [],
   "src/main.ts": [],
   "index.html": [],
-  "assets/app.b27c15d9.js-unocss-hash.css": [],
+  "assets/app.ec29e49e.js-unocss-hash.css": [],
   "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": [
-    "/assets/virtual_pwa-register.3ff79d29.js"
+    "/assets/virtual_pwa-register.9b01f6a2.js"
   ],
   "../../../../../@vite-plugin-pwa/virtual:pwa-register": [
-    "/assets/virtual_pwa-register.3ff79d29.js"
+    "/assets/virtual_pwa-register.9b01f6a2.js"
   ],
   "~icons/carbon/undo": [
-    "/assets/404.e844e5a7.js"
+    "/assets/404.65bcfaa1.js"
   ],
   "~icons/carbon/warning": [
-    "/assets/404.e844e5a7.js"
+    "/assets/404.65bcfaa1.js"
   ],
   "src/layouts/404.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/404.e844e5a7.js"
+    "/assets/404.65bcfaa1.js"
   ],
   "src/layouts/404.vue": [
-    "/assets/404.e844e5a7.js"
+    "/assets/404.65bcfaa1.js"
   ],
   "src/layouts/fullscreen.vue": [
-    "/assets/fullscreen.3224f1b5.js"
+    "/assets/fullscreen.ebd7d643.js"
   ],
   "src/pages/[...all].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_...all_.a5d9989f.js"
+    "/assets/_...all_.6c8c3f8e.js"
   ],
   "src/pages/[...all].vue": [
-    "/assets/_...all_.a5d9989f.js"
+    "/assets/_...all_.6c8c3f8e.js"
   ],
   "../../../../../@vite-plugin-pages/route-block": [
     "/assets/route-block.023af118.js"
   ],
-  "src/pages/about.md?vue&type=script&setup=true&lang.ts": [
-    "/assets/about.a1046088.js",
-    "/assets/about.4742ab40.css"
-  ],
-  "src/pages/about.md?vue&type=style&index=0&scoped=aa55a1a9&lang.css": [
-    "/assets/about.a1046088.js",
-    "/assets/about.4742ab40.css"
+  "src/pages/about.md?vue&type=style&index=0&scoped=35379484&lang.css": [
+    "/assets/about.e7301399.js",
+    "/assets/about.ffcbb8e0.css"
   ],
   "src/pages/about.md": [
-    "/assets/about.a1046088.js",
-    "/assets/about.4742ab40.css"
+    "/assets/about.e7301399.js",
+    "/assets/about.ffcbb8e0.css"
   ],
   "src/pages/blog/index.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index.935b489b.js"
+    "/assets/index.49dfac8e.js"
   ],
   "src/pages/blog/index.vue": [
-    "/assets/index.935b489b.js"
-  ],
-  "src/pages/blog/vue-masonry-wall.md?vue&type=script&setup=true&lang.ts": [
-    "/assets/vue-masonry-wall.6a57a8da.js"
+    "/assets/index.49dfac8e.js"
   ],
   "src/pages/blog/vue-masonry-wall.md": [
-    "/assets/vue-masonry-wall.6a57a8da.js"
+    "/assets/vue-masonry-wall.38d45e3e.js"
   ],
   "src/pages/files/index.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index.9fd691f4.js"
+    "/assets/index.c91ea488.js"
   ],
   "src/pages/files/index.vue": [
-    "/assets/index.9fd691f4.js"
+    "/assets/index.c91ea488.js"
   ],
   "src/composables/documents.ts": [
     "/assets/documents.23cf6091.js"
@@ -178,15 +172,15 @@
     "/assets/models.4e6cc1b0.js"
   ],
   "src/pages/files/documents/[name].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_name_.f02d6077.js"
+    "/assets/_name_.f6088aee.js"
   ],
   "src/pages/files/documents/[name].vue": [
-    "/assets/_name_.f02d6077.js"
+    "/assets/_name_.f6088aee.js"
   ],
   "src/pages/files/models/[name].vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/_name_.4728f19d.js"
+    "/assets/_name_.eea5b4e6.js"
   ],
   "src/pages/files/models/[name].vue": [
-    "/assets/_name_.4728f19d.js"
+    "/assets/_name_.eea5b4e6.js"
   ]
 }
