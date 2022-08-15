@@ -27,7 +27,25 @@
 <meta property="twitter:description" content="Personal website of Jan Müller, a passionate software engineer.">
 <meta property="twitter:image" content="https://jan-mueller.at/og-logo.png">
 
-  <link rel="stylesheet" href="/assets/about-blog-vue-masonry-wall-blog-impressum-404-index.d2b03f03.css" /></head>
+<script>
+  const theme = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme')
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark'
+    }
+    return 'light'
+  })()
+  if (theme === 'light') {
+    document.documentElement.classList.remove('dark')
+  } else {
+    document.documentElement.classList.add('dark')
+  }
+  window.localStorage.setItem('theme', theme)
+</script>
+
+  <link rel="stylesheet" href="/assets/about-blog-vue-masonry-wall-blog-impressum-404-index.74af2e20.css" /></head>
   <body class="bg-white dark:bg-black text-black dark:text-white transition-colors">
     <header class="sticky top-0 surface z-10 border-b h-[62px]">
   <nav class="flex justify-center gap-4 text-lg">
