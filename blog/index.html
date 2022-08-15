@@ -8,32 +8,33 @@
 <meta name="generator" content="Astro v1.0.5">
 
 <!-- Primary Meta Tags -->
-<title>Jan Müller</title>
-<meta name="title" content="Jan Müller">
+<title>Blog — Jan Müller</title>
+<meta name="title" content="Blog — Jan Müller">
 <meta name="description" content="Personal website of Jan Müller, a passionate software engineer.">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://jan-mueller.at/404">
-<meta property="og:title" content="Jan Müller">
+<meta property="og:url" content="https://jan-mueller.at/blog">
+<meta property="og:title" content="Blog — Jan Müller">
 <meta property="og:description" content="Personal website of Jan Müller, a passionate software engineer.">
 <meta property="og:image" content="https://jan-mueller.at/og-logo.png">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://jan-mueller.at/404">
-<meta property="twitter:title" content="Jan Müller">
+<meta property="twitter:url" content="https://jan-mueller.at/blog">
+<meta property="twitter:title" content="Blog — Jan Müller">
 <meta property="twitter:description" content="Personal website of Jan Müller, a passionate software engineer.">
 <meta property="twitter:image" content="https://jan-mueller.at/og-logo.png">
 
-  <link rel="stylesheet" href="/assets/about-blog-vue-masonry-wall-blog-impressum-404-index.d2b03f03.css" /></head>
+  <link rel="stylesheet" href="/assets/about-blog-vue-masonry-wall-blog-impressum-404-index.d2b03f03.css" />
+<link rel="stylesheet" href="/assets/about-blog-vue-masonry-wall-blog-impressum.67a900e6.css" /></head>
   <body class="bg-white dark:bg-black text-black dark:text-white transition-colors">
     <header class="sticky top-0 surface z-10 border-b h-[62px]">
   <nav class="flex justify-center gap-4 text-lg">
   <a href="/" class="inline-block py-4 text-black dark:text-white no-underline">
   Home
 </a>
-  <a href="/blog" class="inline-block py-4 text-black dark:text-white no-underline">
+  <a href="/blog" class="inline-block py-4 text-black dark:text-white no-underline border-b-[2px] border-black dark:border-white">
   Blog
 </a>
 </nav>
@@ -43,9 +44,21 @@
 </header>
     <main class="py-8 px-4 bg-neutral-100 dark:bg-neutral-900 text-light">
   <div class="container m-auto max-w-2xl">
-    <div class="flex flex-col items-center my-16">
-    <h1 class="text-4xl">Not found</h1>
-  </div>
+    <content>
+    <ul class="flex flex-wrap">
+      <li class="surface border rounded max-w-sm hover:shadow-xl transition-shadow">
+            <a href="/blog/vue-masonry-wall" class="no-underline">
+              <div class="p-4 flex flex-col">
+                <span class="text-xl">Masonry layout for Vue 2 and Vue 3</span>
+                <span class="text-lighter">
+                  <time>Aug 16, 2021</time>
+                </span>
+                <span class="text-light">Responsive masonry layout with SSR support and zero dependencies for Vue 2 and Vue 3.</span>
+              </div>
+            </a>
+          </li>
+    </ul>
+  </content>
   </div>
 </main>
     <footer class="surface text-xs border-t shadow-none px-2 py-8 flex flex-row gap-4 items-start content-start flex-wrap justify-center children:flex children:flex-col children:gap-3 [&>*>*:first-child]:mb-4">
