@@ -114,7 +114,6 @@ However, I couldn&#39;t get the rehype plugins working unless I configured them 
 <span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { toString } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;hast-util-to-string&#39;</span></span>
 <span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { h } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;hastscript&#39;</span></span>
 <span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> autolinkHeadings </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;rehype-autolink-headings&#39;</span></span>
-<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { codeImport } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;remark-code-import&#39;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#88846F">// The following configuration for rehype-autolink-headings was taken from https://github.com/withastro/docs/blob/main/astro.config.ts</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> AnchorLinkIcon </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">h</span><span style="color:#F8F8F2">(</span></span>
@@ -142,7 +141,6 @@ However, I couldn&#39;t get the rehype plugins working unless I configured them 
 <span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">default</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">defineConfig</span><span style="color:#F8F8F2">({</span></span>
 <span class="line"><span style="color:#F8F8F2">  integrations: [</span></span>
 <span class="line"><span style="color:#F8F8F2">    </span><span style="color:#A6E22E">mdx</span><span style="color:#F8F8F2">({</span></span>
-<span class="line"><span style="color:#F8F8F2">      remarkPlugins: [codeImport],</span></span>
 <span class="line"><span style="color:#F8F8F2">      rehypePlugins: [</span></span>
 <span class="line"><span style="color:#F8F8F2">        [</span></span>
 <span class="line"><span style="color:#F8F8F2">          autolinkHeadings,</span></span>
