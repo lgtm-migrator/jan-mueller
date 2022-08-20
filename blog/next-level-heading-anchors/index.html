@@ -99,17 +99,17 @@
         </aside>
     <h2 id="introduction">Introduction<a aria-hidden="true" tabIndex="-1" href="#introduction"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Introduction</span></a></h2>
 <p><a href="https://astro.build">Astro</a> enables powerful customization of Markdown pages by using <a href="https://github.com/rehypejs/rehype">rehype</a> plugins.
-In this guide, I&#39;ll teach you how to automatically create next-level anchor links for headings with Astro and <a href="https://tailwindcss.com">Tailwind CSS</a>.
-In the following sections, I&#39;ll assume basic knowledge about the used technologies.</p>
+In this guide, I’ll teach you how to automatically create next-level anchor links for headings with Astro and <a href="https://tailwindcss.com">Tailwind CSS</a>.
+In the following sections, I’ll assume basic knowledge about the used technologies.</p>
 <p>If you have already worked with heading anchors on a site that has a sticky header (like this one), you will know that navigating to an anchor by its slug (e.g., <code>#introduction</code>) will result in the heading being obstructed by the header.
 By following the guide below, you will end up with anchor links that avoid this issue.</p>
 <h2 id="configuring-rehype">Configuring rehype<a aria-hidden="true" tabIndex="-1" href="#configuring-rehype"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Configuring%20rehype</span></a></h2>
 <p>To get started, add the <code>@astrojs/mdx</code> and <code>@astrojs/tailwind</code> integrations to your project.
 We will also need the following packages:</p>
 <pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F8F8F2">yarn add -D rehype-autolink-headings hastscript hast-util-to-string</span></span></code></pre>
-<p>Then, we will update Astro&#39;s config <code>astro.config.mjs</code> to automatically generate the links.
-I have taken quite a bit of this configuration from the <a href="https://github.com/withastro/docs/blob/main/astro.config.ts">official Astro doc&#39;s config</a>, including their <code>AnchorLinkIcon</code> and <code>createSROnlyLabel</code>.
-However, I couldn&#39;t get the rehype plugins working unless I configured them in the config of the <code>@astrojs/mdx</code> integration.</p>
+<p>Then, we will update Astro’s config <code>astro.config.mjs</code> to automatically generate the links.
+I have taken quite a bit of this configuration from the <a href="https://github.com/withastro/docs/blob/main/astro.config.ts">official Astro doc’s config</a>, including their <code>AnchorLinkIcon</code> and <code>createSROnlyLabel</code>.
+However, I couldn’t get the rehype plugins working unless I configured them in the config of the <code>@astrojs/mdx</code> integration.</p>
 <pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> mdx </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;@astrojs/mdx&#39;</span></span>
 <span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> tailwind </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;@astrojs/tailwind&#39;</span></span>
 <span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { defineConfig } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;astro/config&#39;</span></span>
@@ -143,29 +143,30 @@ However, I couldn&#39;t get the rehype plugins working unless I configured them 
 <span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">default</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">defineConfig</span><span style="color:#F8F8F2">({</span></span>
 <span class="line"><span style="color:#F8F8F2">  integrations: [</span></span>
 <span class="line"><span style="color:#F8F8F2">    </span><span style="color:#A6E22E">mdx</span><span style="color:#F8F8F2">({</span></span>
-<span class="line"><span style="color:#F8F8F2">      rehypePlugins: [</span></span>
-<span class="line"><span style="color:#F8F8F2">        [</span></span>
-<span class="line"><span style="color:#F8F8F2">          autolinkHeadings,</span></span>
-<span class="line"><span style="color:#F8F8F2">          {</span></span>
-<span class="line"><span style="color:#F8F8F2">            behavior: </span><span style="color:#E6DB74">&#39;append&#39;</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#F8F8F2">            </span><span style="color:#A6E22E">group</span><span style="color:#F8F8F2">: ({ </span><span style="color:#FD971F;font-style:italic">tagName</span><span style="color:#F8F8F2"> }) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span></span>
-<span class="line"><span style="color:#F8F8F2">              </span><span style="color:#A6E22E">h</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">`div.heading-wrapper.level-</span><span style="color:#F92672">${</span><span style="color:#F8F8F2">tagName</span><span style="color:#F92672">}</span><span style="color:#E6DB74">`</span><span style="color:#F8F8F2">, {</span></span>
-<span class="line"><span style="color:#F8F8F2">                tabIndex: </span><span style="color:#F92672">-</span><span style="color:#AE81FF">1</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#F8F8F2">              }),</span></span>
-<span class="line"><span style="color:#F8F8F2">            </span><span style="color:#A6E22E">content</span><span style="color:#F8F8F2">: (</span><span style="color:#FD971F;font-style:italic">heading</span><span style="color:#F8F8F2">) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> [</span></span>
-<span class="line"><span style="color:#F8F8F2">              </span><span style="color:#A6E22E">h</span><span style="color:#F8F8F2">(</span></span>
-<span class="line"><span style="color:#F8F8F2">                </span><span style="color:#E6DB74">`span.anchor-icon`</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#F8F8F2">                {</span></span>
-<span class="line"><span style="color:#F8F8F2">                  </span><span style="color:#88846F">// should be ignored by screen readers</span></span>
-<span class="line"><span style="color:#F8F8F2">                  ariaHidden: </span><span style="color:#E6DB74">&#39;true&#39;</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#F8F8F2">                },</span></span>
-<span class="line"><span style="color:#F8F8F2">                AnchorLinkIcon</span></span>
-<span class="line"><span style="color:#F8F8F2">              ),</span></span>
-<span class="line"><span style="color:#F8F8F2">              </span><span style="color:#A6E22E">createSROnlyLabel</span><span style="color:#F8F8F2">(</span><span style="color:#A6E22E">toString</span><span style="color:#F8F8F2">(heading)),</span></span>
-<span class="line"><span style="color:#F8F8F2">            ],</span></span>
-<span class="line"><span style="color:#F8F8F2">          },</span></span>
+<span class="line"><span style="color:#F8F8F2">      rehypePlugins: {</span></span>
+<span class="line"><span style="color:#F8F8F2">        extends: [</span></span>
+<span class="line"><span style="color:#F8F8F2">          [</span></span>
+<span class="line"><span style="color:#F8F8F2">            autolinkHeadings,</span></span>
+<span class="line"><span style="color:#F8F8F2">            {</span></span>
+<span class="line"><span style="color:#F8F8F2">              behavior: </span><span style="color:#E6DB74">&#39;append&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">              </span><span style="color:#A6E22E">group</span><span style="color:#F8F8F2">: ({ </span><span style="color:#FD971F;font-style:italic">tagName</span><span style="color:#F8F8F2"> }) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">                </span><span style="color:#A6E22E">h</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">`div.heading-wrapper.level-</span><span style="color:#F92672">${</span><span style="color:#F8F8F2">tagName</span><span style="color:#F92672">}</span><span style="color:#E6DB74">`</span><span style="color:#F8F8F2">, {</span></span>
+<span class="line"><span style="color:#F8F8F2">                  tabIndex: </span><span style="color:#F92672">-</span><span style="color:#AE81FF">1</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">                }),</span></span>
+<span class="line"><span style="color:#F8F8F2">              </span><span style="color:#A6E22E">content</span><span style="color:#F8F8F2">: (</span><span style="color:#FD971F;font-style:italic">heading</span><span style="color:#F8F8F2">) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> [</span></span>
+<span class="line"><span style="color:#F8F8F2">                </span><span style="color:#A6E22E">h</span><span style="color:#F8F8F2">(</span></span>
+<span class="line"><span style="color:#F8F8F2">                  </span><span style="color:#E6DB74">`span.anchor-icon`</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">                  {</span></span>
+<span class="line"><span style="color:#F8F8F2">                    ariaHidden: </span><span style="color:#E6DB74">&#39;true&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">                  },</span></span>
+<span class="line"><span style="color:#F8F8F2">                  AnchorLinkIcon</span></span>
+<span class="line"><span style="color:#F8F8F2">                ),</span></span>
+<span class="line"><span style="color:#F8F8F2">                </span><span style="color:#A6E22E">createSROnlyLabel</span><span style="color:#F8F8F2">(</span><span style="color:#A6E22E">toString</span><span style="color:#F8F8F2">(heading)),</span></span>
+<span class="line"><span style="color:#F8F8F2">              ],</span></span>
+<span class="line"><span style="color:#F8F8F2">            },</span></span>
+<span class="line"><span style="color:#F8F8F2">          ],</span></span>
 <span class="line"><span style="color:#F8F8F2">        ],</span></span>
-<span class="line"><span style="color:#F8F8F2">      ],</span></span>
+<span class="line"><span style="color:#F8F8F2">      },</span></span>
 <span class="line"><span style="color:#F8F8F2">    }),</span></span>
 <span class="line"><span style="color:#F8F8F2">    </span><span style="color:#A6E22E">tailwind</span><span style="color:#F8F8F2">(),</span></span>
 <span class="line"><span style="color:#F8F8F2">    </span><span style="color:#88846F">// ...remaining integrations</span></span>
@@ -173,13 +174,13 @@ However, I couldn&#39;t get the rehype plugins working unless I configured them 
 <span class="line"><span style="color:#F8F8F2">  </span><span style="color:#88846F">// ...remaining config</span></span>
 <span class="line"><span style="color:#F8F8F2">})</span></span></code></pre>
 <p>Now all of your headings in <code>.mdx</code> files should have anchors and IDs!
-The labels for screen readers are already hidden by Tailwind&#39;s styles for the <code>.sr-only</code> class we applied.</p>
+The labels for screen readers are already hidden by Tailwind’s styles for the <code>.sr-only</code> class we applied.</p>
 <p>Unfortunately, icons will not be aligned with their headings, and navigating to a heading via its slug will result in it being obstructed by the header.
 We will fix that in the next section!</p>
 <h2 id="issues-and-workarounds">Issues and Workarounds<a aria-hidden="true" tabIndex="-1" href="#issues-and-workarounds"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Issues%20and%20Workarounds</span></a></h2>
-<p>Here&#39;s what we need to achieve:</p>
+<p>Here’s what we need to achieve:</p>
 <ol>
-<li>Align the anchor icon with the heading&#39;s text</li>
+<li>Align the anchor icon with the heading’s text</li>
 <li>Prevent a sticky header from obstructing headings when navigating by slugs</li>
 </ol>
 <h3 id="anchor-icon-alignment">Anchor Icon Alignment<a aria-hidden="true" tabIndex="-1" href="#anchor-icon-alignment"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Anchor%20Icon%20Alignment</span></a></h3>
@@ -192,9 +193,9 @@ An intuitive solution for the problem are the following Tailwind utilities:</p>
 <span class="line"><span style="color:#F8F8F2">}</span></span></code></pre>
 <h3 id="heading-offset">Heading Offset<a aria-hidden="true" tabIndex="-1" href="#heading-offset"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Heading%20Offset</span></a></h3>
 <p>Next, we will prevent a sticky header from overlaying headings by using the <code>scroll-margin-top</code> property.
-In addition to the height of the header, you may also consider adding any <code>padding</code> of the Markdown&#39;s container element to the scroll-margin.
+In addition to the height of the header, you may also consider adding any <code>padding</code> of the Markdown’s container element to the scroll-margin.
 In the case of my blog, this is <code>48px</code> (height of the header) + <code>32px</code> (padding of <code>main</code>) = <code>80px</code>.
-This translates to Tailwind&#39;s <code>scroll-mt-20</code> utility.</p>
+This translates to Tailwind’s <code>scroll-mt-20</code> utility.</p>
 <pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">@layer</span><span style="color:#F8F8F2"> components {</span></span>
 <span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">*</span><span style="color:#F8F8F2">:is(</span><span style="color:#F92672">h1</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h2</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h3</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h4</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h5</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h6</span><span style="color:#F8F8F2">) {</span></span>
 <span class="line"><span style="color:#F8F8F2">    @apply scroll-mt-20;</span></span>
@@ -203,7 +204,7 @@ This translates to Tailwind&#39;s <code>scroll-mt-20</code> utility.</p>
 <h2 id="conclusion">Conclusion<a aria-hidden="true" tabIndex="-1" href="#conclusion"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Conclusion</span></a></h2>
 <p>Setting up automatic anchor generation is not that difficult, thanks to <code>rehype-autolink-headers</code>.
 While they require some styling to work well with sticky headers, Tailwind CSS reduces this to a few lines of code.</p>
-<p>We ended up with the following CSS to create accessible anchors and headings that won&#39;t be obstructed by headers.</p>
+<p>We ended up with the following CSS to create accessible anchors and headings that won’t be obstructed by headers.</p>
 <pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">@layer</span><span style="color:#F8F8F2"> components {</span></span>
 <span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">*</span><span style="color:#F8F8F2">:is(</span><span style="color:#F92672">h1</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h2</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h3</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h4</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h5</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">h6</span><span style="color:#F8F8F2">) {</span></span>
 <span class="line"><span style="color:#F8F8F2">    @apply </span><span style="color:#66D9EF;font-style:italic">flex</span><span style="color:#F8F8F2"> items-center gap-2 scroll-mt-20;</span></span>
