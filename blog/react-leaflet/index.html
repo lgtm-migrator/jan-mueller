@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="en">
+  <head class="max-w-full overflow-x-hidden">
+    <!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="mask-icon" href="/favicon.svg" color="#333">
+<meta name="theme-color" content="#000000">
+<meta name="generator" content="Astro v1.0.9">
+
+<!-- Primary Meta Tags -->
+<title>React, Leaflet, and SSR – Jan Müller</title>
+<meta name="title" content="React, Leaflet, and SSR – Jan Müller">
+<meta name="description" content="A guide on using Leaflet for adding OpenStreetMap to a React application, with a hint of SSR and Preact thrown in the mix.">
+<link rel="canonical" href="https://jan-mueller.at/blog/react-leaflet">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jan-mueller.at/blog/react-leaflet">
+<meta property="og:title" content="React, Leaflet, and SSR – Jan Müller">
+<meta property="og:description" content="A guide on using Leaflet for adding OpenStreetMap to a React application, with a hint of SSR and Preact thrown in the mix.">
+<meta property="og:image" content="https://og-image-deryeger.vercel.app/React%2C%20Leaflet%2C%20and%20SSR.png?theme=dark&#38;md=1&#38;fontSize=125px&#38;images=https%3A%2F%2Fjan-mueller.at%2Fog-image-light.svg&#38;images=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fa%2Fa7%2FReact-icon.svg&#38;images=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F13%2FLeaflet_logo.svg%2F800px-Leaflet_logo.svg.png">
+
+<!-- Twitter -->
+<meta property="twitter:creator" content="@DerYeger">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://jan-mueller.at/blog/react-leaflet">
+<meta property="twitter:title" content="React, Leaflet, and SSR – Jan Müller">
+<meta property="twitter:description" content="A guide on using Leaflet for adding OpenStreetMap to a React application, with a hint of SSR and Preact thrown in the mix.">
+<meta property="twitter:image" content="https://og-image-deryeger.vercel.app/React%2C%20Leaflet%2C%20and%20SSR.png?theme=dark&#38;md=1&#38;fontSize=125px&#38;images=https%3A%2F%2Fjan-mueller.at%2Fog-image-light.svg&#38;images=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fa%2Fa7%2FReact-icon.svg&#38;images=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F1%2F13%2FLeaflet_logo.svg%2F800px-Leaflet_logo.svg.png">
+
+<script>
+  const theme = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme')
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark'
+    }
+    return 'light'
+  })()
+  if (theme === 'light') {
+    document.documentElement.classList.remove('dark')
+  } else {
+    document.documentElement.classList.add('dark')
+  }
+  window.localStorage.setItem('theme', theme)
+</script>
+
+  <link rel="stylesheet" href="/assets/86e2955d.67a900e6.css" />
+<link rel="stylesheet" href="/assets/a95681cd.a38aff9c.css" />
+<link rel="stylesheet" href="/assets/blog-blog-react-leaflet-rss.d8452fb6.css" /><script type="module" src="/page.3aa82516.js"></script></head>
+  <body class="max-w-full overflow-x-hidden bg-white dark:bg-black text-black dark:text-white transition-colors">
+    <header class="flex items-center justify-between p-4 pr-0 sticky top-0 surface z-10 border-b h-[48px]">
+  <nav class="flex gap-2">
+  <a href="/" rel="prefetch" class="inline-block border no-underline px-3 py-1 rounded text-sm hover:text-black hover:dark:text-white hover:border-neutral-400 hover:dark:border-neutral-600 border-transparent">
+  Home
+</a>
+  <a href="/blog" rel="prefetch" class="inline-block border no-underline px-3 py-1 rounded text-sm hover:text-black hover:dark:text-white hover:border-neutral-400 hover:dark:border-neutral-600 border-transparent">
+  Blog
+</a>
+</nav>
+  <div>
+    <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t)},o=(t,i)=>{if(t===""||!Array.isArray(i))return i;const[e,n]=i;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const i=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const s of n){const r=s.closest(this.tagName);!r||!r.isSameNode(this)||(e[s.getAttribute("data-astro-template")||"default"]=s.innerHTML,s.remove())}for(const s of i){const r=s.closest(this.tagName);!r||!r.isSameNode(this)||(e[s.getAttribute("name")||"default"]=s.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((i,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate),await import(this.getAttribute("before-hydration-url")),this.start()}start(){const i=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:s}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),r=this.getAttribute("component-export")||"default";if(!r.includes("."))this.Component=a[r];else{this.Component=a;for(const d of r.split("."))this.Component=this.Component[d]}return this.hydrator=s,this.hydrate},i,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="Z1zOUaJ" component-url="/ThemeToggle.4ef3e303.js" component-export="default" renderer-url="/client.f1d83173.js" props="{}" ssr="" client="load" before-hydration-url="data:text/javascript;charset=utf-8,//[no before-hydration script]" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children=""><template data-astro-template="dark"><svg viewBox="0 0 32 32" slot="dark" class="h-[24px] w-[24px]" astro-icon="carbon:moon"><path fill="currentColor" d="M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194 11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016 13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555 1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38 1.015 1.015 0 0 0 14.98 3z"/></svg></template><template data-astro-template="light"><svg viewBox="0 0 32 32" slot="light" class="h-[24px] w-[24px]" astro-icon="carbon:sun"><path fill="currentColor" d="M16 12.005a4 4 0 1 1-4 4 4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6 6 6 0 0 0-6-6zM5.394 6.813l1.414-1.415 3.506 3.506L8.9 10.318zM2 15.005h5v2H2zM5.394 25.197 8.9 21.691l1.414 1.415-3.506 3.505zM15 25.005h2v5h-2zM21.687 23.106l1.414-1.415 3.506 3.506-1.414 1.414zM25 15.005h5v2h-5zM21.687 8.904l3.506-3.506 1.414 1.415-3.506 3.505zM15 2.005h2v5h-2z"/></svg></template></astro-island>
+  </div>
+</header>
+    <main class="bg-neutral-100 dark:bg-neutral-900 text-light">
+  <article class="container mx-auto px-4 py-8 prose dark:prose-invert">
+    <img class="w-full h-[200px] object-cover card border-0 astro-C563XDD6" alt="React, Leaflet, and SSR" width="1300" height="400" src="/_image/assets/blog/maps_1300x400.webp" loading="eager" decoding="async">
+
+
+    <h1>React, Leaflet, and SSR</h1>
+    <div class="flex flex-wrap gap-1 mt-8 mb-4">
+          <time>Aug 24, 2022</time>
+          
+          <span style="white-space: pre"> &middot; </span>
+          8 min read
+        </div>
+    <blockquote>A guide on using Leaflet for adding OpenStreetMap to a React application, with a hint of SSR and Preact thrown in the mix.</blockquote>
+    <aside>
+          <h2>Contents</h2>
+          <ul>
+            <li style="margin-left:0rem">
+                <a href="#introduction">Introduction</a>
+              </li><li style="margin-left:0rem">
+                <a href="#creating-a-reusable-component">Creating a Reusable Component</a>
+              </li><li style="margin-left:2rem">
+                <a href="#installation">Installation</a>
+              </li><li style="margin-left:2rem">
+                <a href="#implementation">Implementation</a>
+              </li><li style="margin-left:2rem">
+                <a href="#styling">Styling</a>
+              </li><li style="margin-left:0rem">
+                <a href="#adding-markers">Adding Markers</a>
+              </li><li style="margin-left:2rem">
+                <a href="#improving-performance">Improving Performance</a>
+              </li><li style="margin-left:0rem">
+                <a href="#supporting-ssr">Supporting SSR</a>
+              </li><li style="margin-left:2rem">
+                <a href="#astro">Astro</a>
+              </li><li style="margin-left:2rem">
+                <a href="#nextjs">Next.js</a>
+              </li><li style="margin-left:0rem">
+                <a href="#conclusion">Conclusion</a>
+              </li>
+          </ul>
+        </aside>
+    <h2 id="introduction">Introduction<a aria-hidden="true" tabIndex="-1" href="#introduction"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Introduction</span></a></h2>
+<p><a href="https://www.openstreetmap.org" target="_blank" rel="noreferrer">OpenStreetMap</a> is a great free alternative to Google Maps and Apple Maps.
+In this blog post, I demonstrate how to use <a href="https://leafletjs.com" target="_blank" rel="noreferrer">Leaflet</a> for adding interactive maps to React websites, implementing performant markers, and finally supporting SSR environments such as Astro and Next.js.</p>
+<p>Please note that I’m using type imports of <a href="https://preactjs.com" target="_blank" rel="noreferrer">Preact</a> instead of React, since it decreases the size of my blog’s client-side JavaScript bundles.
+Preact has a React compatibility mode, so the imports are the only difference from a React implementation.
+In the following code snippets, I’ll add notes about differences to React as comments.</p>
+<h2 id="creating-a-reusable-component">Creating a Reusable Component<a aria-hidden="true" tabIndex="-1" href="#creating-a-reusable-component"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Creating%20a%20Reusable%20Component</span></a></h2>
+<script>(self.Astro=self.Astro||{}).only=t=>{(async()=>await(await t())())()},window.dispatchEvent(new Event("astro:only"));</script><astro-island uid="20vjAB" component-url="/LeafletMap.lazy.87f8cb27.js" component-export="LeafletMap" renderer-url="/client.f1d83173.js" props="{}" ssr="" client="only" before-hydration-url="data:text/javascript;charset=utf-8,//[no before-hydration script]" opts="{&quot;name&quot;:&quot;LeafletMap&quot;,&quot;value&quot;:&quot;preact&quot;}"></astro-island>
+<h3 id="installation">Installation<a aria-hidden="true" tabIndex="-1" href="#installation"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Installation</span></a></h3>
+<p>First, we need to install the packages <code>leaflet</code>, <code>@types/leaflet</code>, and <a href="https://react-leaflet.js.org/" target="_blank" rel="noreferrer"><code>react-leaflet</code></a>:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F8F8F2">yarn install leaflet react-leaflet</span></span>
+<span class="line"><span style="color:#F8F8F2">yarn install -D @types/leaflet</span></span></code></pre>
+<p>Leaflet will handle the visualization and interactivity of our maps.
+<code>react-leaflet</code> includes various React components that provide bindings to Leaflet’s DOM rendering, making it a lot simpler to integrate with a React application.</p>
+<h3 id="implementation">Implementation<a aria-hidden="true" tabIndex="-1" href="#implementation"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Implementation</span></a></h3>
+<p>Below is the code for a basic reusable map component.
+I’ll explain the important points in detail.</p>
+<ol>
+<li>The <code>children</code> prop is used to make the component reusable.
+It enables us to include various elements, such as <a href="#adding-markers">markers</a>.</li>
+<li>By also using <code>MapOptions</code> as the props type, it’s possible to pass any of <a href="https://leafletjs.com/reference.html#map-option" target="_blank" rel="noreferrer">Leaflet’s options</a> directly to the map.</li>
+<li>It’s important to give the <code>MapContainer</code> a height.
+In this example, I used Tailwind’s utility <code>h-[200px]</code>.</li>
+<li><code>TileLayer</code> handles the visualization and design of our map.
+Leaflet allows us to specify a <a href="https://github.com/leaflet-extras/leaflet-providers" target="_blank" rel="noreferrer">provider</a> for tile layers.
+Previews and instructions for various providers can be found <a href="https://leaflet-extras.github.io/leaflet-providers/preview/" target="_blank" rel="noreferrer">here</a>.
+Keep in mind that not all of them are free, so always check their individual terms and conditions.
+(And don’t forget to add the correct attribution!)
+In this blog, I am using <a href="https://github.com/CartoDB/basemap-styles" target="_blank" rel="noreferrer">Basemaps styles from CARTO</a>.</li>
+<li>Styling!
+Leaflet’s styles have to be imported manually, as described next in <a href="#styling">Styling</a>.</li>
+</ol>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">type</span><span style="color:#F8F8F2"> { MapOptions } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;leaflet&#39;</span></span>
+<span class="line"><span style="color:#88846F">// React: import type { FC, ReactNode } from &#39;react&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">type</span><span style="color:#F8F8F2"> { ComponentChildren, FunctionalComponent } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;preact&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { MapContainer, TileLayer } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;react-leaflet&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LeafletMap</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">FunctionalComponent</span><span style="color:#F8F8F2">&lt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  {</span></span>
+<span class="line"><span style="color:#F8F8F2">    center</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> [</span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">, </span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">]</span></span>
+<span class="line"><span style="color:#F8F8F2">    children</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">ComponentChildren</span></span>
+<span class="line"><span style="color:#F8F8F2">    zoom</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">number</span></span>
+<span class="line"><span style="color:#F8F8F2">  } </span><span style="color:#F92672">&amp;</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">MapOptions</span></span>
+<span class="line"><span style="color:#F8F8F2">&gt; </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> ({ </span><span style="color:#FD971F;font-style:italic">children</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">...</span><span style="color:#FD971F;font-style:italic">options</span><span style="color:#F8F8F2"> }) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">return</span><span style="color:#F8F8F2"> (</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;</span><span style="color:#66D9EF;font-style:italic">MapContainer</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">className</span><span style="color:#F92672">=</span><span style="color:#E6DB74">&quot;h-[200px] w-full&quot;</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">maxZoom</span><span style="color:#F92672">={</span><span style="color:#AE81FF">18</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">{...</span><span style="color:#F8F8F2">options</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">      &lt;</span><span style="color:#66D9EF;font-style:italic">TileLayer</span></span>
+<span class="line"><span style="color:#F8F8F2">        </span><span style="color:#A6E22E">attribution</span><span style="color:#F92672">=</span><span style="color:#E6DB74">&#39;</span><span style="color:#AE81FF">&amp;copy;</span><span style="color:#E6DB74"> &lt;a href=&quot;https://www.openstreetmap.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors </span><span style="color:#AE81FF">&amp;copy;</span><span style="color:#E6DB74"> &lt;a href=&quot;https://carto.com/attributions&quot;&gt;CARTO&lt;/a&gt;&#39;</span></span>
+<span class="line"><span style="color:#F8F8F2">        </span><span style="color:#A6E22E">url</span><span style="color:#F92672">=</span><span style="color:#E6DB74">&quot;https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png&quot;</span></span>
+<span class="line"><span style="color:#F8F8F2">      /&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">      </span><span style="color:#F92672">{</span><span style="color:#F8F8F2">children</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;/</span><span style="color:#66D9EF;font-style:italic">MapContainer</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  )</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">default</span><span style="color:#F8F8F2"> LeafletMap</span></span></code></pre>
+<p>Our new <code>LeafletMap</code> component can be used as seen below.
+For now, we will not make use of the <code>children</code> prop and pass an empty fragment instead.</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F8F8F2">&lt;</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">center</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">center</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">zoom</span><span style="color:#F92672">={</span><span style="color:#AE81FF">13</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  &lt;&gt;&lt;/&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">&lt;/</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2">&gt;</span></span></code></pre>
+<h3 id="styling">Styling<a aria-hidden="true" tabIndex="-1" href="#styling"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Styling</span></a></h3>
+<p>Setting up Leaflet’s is straight forward.
+Just add the following import to your project:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;leaflet/dist/leaflet.css&#39;</span></span></code></pre>
+<blockquote>
+<p>Note: With Next.js, you may need to import the styles in your project’s <code>global.css</code>.</p>
+</blockquote>
+<p>If you have any modals, sticky elements or similar content on your website, maps will render above these elements.
+For some reason, certain elements of Leaflet’s maps come with <code>z-index</code> of 400!
+A simple fix for this issue is settings the <code>z-index</code> of the offending elements back to 0.</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#A6E22E">.leaflet-bottom</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#A6E22E">.leaflet-control</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#A6E22E">.leaflet-pane</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#A6E22E">.leaflet-top</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#66D9EF;font-style:italic">z-index</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">0</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">!important</span><span style="color:#F8F8F2">;</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span></code></pre>
+<h2 id="adding-markers">Adding Markers<a aria-hidden="true" tabIndex="-1" href="#adding-markers"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Adding%20Markers</span></a></h2>
+<astro-island uid="Z1OT4NL" component-url="/LeafletMap.lazy.87f8cb27.js" component-export="LeafletMapWithMarkers" renderer-url="/client.f1d83173.js" props="{}" ssr="" client="only" before-hydration-url="data:text/javascript;charset=utf-8,//[no before-hydration script]" opts="{&quot;name&quot;:&quot;LeafletMapWithMarkers&quot;,&quot;value&quot;:&quot;preact&quot;}"></astro-island>
+<p>The default marker icons of Leaflet will not work with Next.js out of the box, since they are imported with <code>require</code> statements.
+In this section, I will create a custom marker icon for my maps.</p>
+<p>In this example, I copied the required files to the <code>public/static/leaflet</code> directory of my Astro project and specified them in the code below.</p>
+<blockquote>
+<p>You may use Leaflet’s files for marker icons by copying them from <code>node_modules/leaflet/dist/images/*.png</code> to your <code>public</code> directory.</p>
+</blockquote>
+<p>While the <code>iconSize</code> and <code>shadowSize</code> should obviously match the dimensions of provided images, the values of <code>iconAnchor</code> and <code>shadowAnchor</code> are not trivial.
+The former should be equal to <code>[iconWidth / 2, iconHeight / 2]</code>, if your marker has a centered tip at the bottom, like the one used in this example.
+I had to experiment with Leaflet’s marker shadow to find the right anchor, and in the end <code>shadowAnchor: [12, 41]</code> resulted in perfect alignment.
+Your mileage may vary with other images!</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { Marker, icon } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;leaflet&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">Marker</span><span style="color:#F8F8F2">.prototype.options.icon </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">icon</span><span style="color:#F8F8F2">({</span></span>
+<span class="line"><span style="color:#F8F8F2">  iconUrl: </span><span style="color:#E6DB74">&#39;/static/leaflet/map-marker.svg&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">  iconRetinaUrl: </span><span style="color:#E6DB74">&#39;/static/leaflet/map-marker.svg&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">  iconSize: [</span><span style="color:#AE81FF">24</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">24</span><span style="color:#F8F8F2">],</span></span>
+<span class="line"><span style="color:#F8F8F2">  iconAnchor: [</span><span style="color:#AE81FF">12</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">24</span><span style="color:#F8F8F2">],</span></span>
+<span class="line"><span style="color:#F8F8F2">  shadowUrl: </span><span style="color:#E6DB74">&#39;/static/leaflet/marker-shadow.png&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">  shadowRetinaUrl: </span><span style="color:#E6DB74">&#39;/static/leaflet/marker-shadow.png&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">  shadowSize: [</span><span style="color:#AE81FF">41</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">41</span><span style="color:#F8F8F2">],</span></span>
+<span class="line"><span style="color:#F8F8F2">  shadowAnchor: [</span><span style="color:#AE81FF">12</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">41</span><span style="color:#F8F8F2">],</span></span>
+<span class="line"><span style="color:#F8F8F2">})</span></span></code></pre>
+<p>Now, our markers can be added to maps as seen in the snippet below:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { Marker } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;react-leaflet&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> center</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> [</span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">, </span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">] </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> [</span><span style="color:#AE81FF">48.2082</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">16.3738</span><span style="color:#F8F8F2">]</span></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> markers</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> [</span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">, </span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">][] </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> [center, [</span><span style="color:#AE81FF">48.2</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">16.37</span><span style="color:#F8F8F2">], [</span><span style="color:#AE81FF">48.1987</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">16.3685</span><span style="color:#F8F8F2">]]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F8F8F2">&lt;</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">center</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">center</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">zoom</span><span style="color:#F92672">={</span><span style="color:#AE81FF">13</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">{</span><span style="color:#F8F8F2">markers.</span><span style="color:#A6E22E">map</span><span style="color:#F8F8F2">((</span><span style="color:#FD971F;font-style:italic">position</span><span style="color:#F8F8F2">, </span><span style="color:#FD971F;font-style:italic">index</span><span style="color:#F8F8F2">) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;</span><span style="color:#66D9EF;font-style:italic">Marker</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">key</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">index</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">position</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">position</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> /&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  ))</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">&lt;/</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2">&gt;</span></span></code></pre>
+<h3 id="improving-performance">Improving Performance<a aria-hidden="true" tabIndex="-1" href="#improving-performance"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Improving%20Performance</span></a></h3>
+<astro-island uid="1nNBBj" component-url="/LeafletMap.lazy.87f8cb27.js" component-export="LeafletMapWithClusters" renderer-url="/client.f1d83173.js" props="{}" ssr="" client="only" before-hydration-url="data:text/javascript;charset=utf-8,//[no before-hydration script]" opts="{&quot;name&quot;:&quot;LeafletMapWithClusters&quot;,&quot;value&quot;:&quot;preact&quot;}"></astro-island>
+<p>The code above works fine for the few example markers, but it has various downsides:</p>
+<ul>
+<li>Adding <strong>many markers</strong> will <strong>cripple performance</strong>, as React will struggle to keep up with thousands of <code>&lt;Marker&gt;</code> elements.</li>
+<li><strong>Zooming out will</strong> result in <strong>markers obstructing each other</strong>, and will most definitely not be able to show locations at a glance.</li>
+</ul>
+<p>Fortunately, <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank" rel="noreferrer">Leaflet.markercluster</a> fixes this issue by grouping markers that are too close together in clusters!
+By using marker clusters, we prevent too many markers being rendered at once, as well as markers being too close together.</p>
+<p>There are a few React-specific wrappers for Leaflet.markercluster, but most of them will not work with React 18.
+After scouring GitHub issues for some time, I found <a href="https://github.com/changey/react-leaflet-markercluster" target="_blank" rel="noreferrer">@changey/react-leaflet-markercluster</a>.
+While it doesn’t provide type definitions (how unfortunate!), it works with React 18.
+It can be installed as follows:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F8F8F2">yarn install @changey/react-leaflet-markercluster</span></span></code></pre>
+<p>And there are more good news; using this library is not difficult either.
+Analogously to our map, we’ll create a reusable <code>&lt;MarkerCluster&gt;</code> component.
+The library comes with a styled cluster icon by default.
+The custom icon below is for demonstration, as it allows me to align the style of my marker and cluster icons.</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#88846F">// @ts-expect-error Missing type definitions</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> BaseMarkerCluster </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;@changey/react-leaflet-markercluster&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { divIcon, point } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;leaflet&#39;</span></span>
+<span class="line"><span style="color:#88846F">// React: import type { FC, ReactNode } from &#39;react&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">type</span><span style="color:#F8F8F2"> { ComponentChildren, FunctionalComponent } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;preact&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">createClusterCustomIcon</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> (</span><span style="color:#FD971F;font-style:italic">cluster</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">any</span><span style="color:#F8F8F2">) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">return</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">divIcon</span><span style="color:#F8F8F2">({</span></span>
+<span class="line"><span style="color:#F8F8F2">    html: </span><span style="color:#E6DB74">`&lt;span&gt;</span><span style="color:#F92672">${</span><span style="color:#F8F8F2">cluster.</span><span style="color:#A6E22E">getChildCount</span><span style="color:#F8F8F2">()</span><span style="color:#F92672">}</span><span style="color:#E6DB74">&lt;/span&gt;`</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">    className:</span></span>
+<span class="line"><span style="color:#F8F8F2">      </span><span style="color:#E6DB74">&#39;bg-[#e74c3c] bg-opacity-100 text-white font-bold !flex items-center justify-center rounded-3xl border-white border-4 border-opacity-50&#39;</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">    iconSize: </span><span style="color:#A6E22E">point</span><span style="color:#F8F8F2">(</span><span style="color:#AE81FF">40</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">40</span><span style="color:#F8F8F2">, </span><span style="color:#AE81FF">true</span><span style="color:#F8F8F2">),</span></span>
+<span class="line"><span style="color:#F8F8F2">  })</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> MarkerCluster</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">FunctionalComponent</span><span style="color:#F8F8F2">&lt;{</span></span>
+<span class="line"><span style="color:#F8F8F2">  children</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">ComponentChildren</span></span>
+<span class="line"><span style="color:#F8F8F2">}&gt; </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> ({ </span><span style="color:#FD971F;font-style:italic">children</span><span style="color:#F8F8F2"> }) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">return</span><span style="color:#F8F8F2"> (</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;</span><span style="color:#66D9EF;font-style:italic">BaseMarkerCluster</span></span>
+<span class="line"><span style="color:#F8F8F2">      </span><span style="color:#A6E22E">iconCreateFunction</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">createClusterCustomIcon</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">      </span><span style="color:#A6E22E">showCoverageOnHover</span><span style="color:#F92672">={</span><span style="color:#AE81FF">false</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">    &gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">      </span><span style="color:#F92672">{</span><span style="color:#F8F8F2">children</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;/</span><span style="color:#66D9EF;font-style:italic">BaseMarkerCluster</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  )</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span></code></pre>
+<p>To use marker clusters, simply wrap your <code>&lt;Marker&gt;</code> elements in a <code>&lt;MarkerCluster&gt;</code>:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F8F8F2">&lt;</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">center</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">center</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">zoom</span><span style="color:#F92672">={</span><span style="color:#AE81FF">13</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  &lt;</span><span style="color:#66D9EF;font-style:italic">MarkerCluster</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">    </span><span style="color:#F92672">{</span><span style="color:#F8F8F2">markers.</span><span style="color:#A6E22E">map</span><span style="color:#F8F8F2">((</span><span style="color:#FD971F;font-style:italic">position</span><span style="color:#F8F8F2">, </span><span style="color:#FD971F;font-style:italic">index</span><span style="color:#F8F8F2">) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span></span>
+<span class="line"><span style="color:#F8F8F2">      &lt;</span><span style="color:#66D9EF;font-style:italic">Marker</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">key</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">index</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">position</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">position</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> /&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">    ))</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">  &lt;/</span><span style="color:#66D9EF;font-style:italic">MarkerCluster</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">&lt;/</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2">&gt;</span></span></code></pre>
+<h2 id="supporting-ssr">Supporting SSR<a aria-hidden="true" tabIndex="-1" href="#supporting-ssr"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Supporting%20SSR</span></a></h2>
+<p>If you have tried using <code>react-leaflet</code> in an SSR context, you’ll also have encountered the dreaded <code>window is not defined</code>.
+I won’t make any false promises, the maps won’t actually be rendered on the server; Leaflet just doesn’t support that.
+However, we will be able to skip Leaflet in SSR environments and hydrate our maps client-side.</p>
+<p>To achieve that, we will use React 18’s <a href="https://reactjs.org/docs/code-splitting.html#reactlazy" target="_blank" rel="noreferrer"><code>React.lazy</code></a>.
+A separate file is required for <em>lazily importing</em> our existing components, e.g., <code>LeafletMap.lazy.tsx</code>.</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#88846F">// React: import React, { Suspense, lazy } from &#39;react&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { Suspense, lazy } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;preact/compat&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LazyLeafletMap </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">lazy</span><span style="color:#F8F8F2">(() </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">import</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">&#39;./LeafletMap&#39;</span><span style="color:#F8F8F2">))</span></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LazyMarker </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">lazy</span><span style="color:#F8F8F2">(</span><span style="color:#F92672">async</span><span style="color:#F8F8F2"> () </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span><span style="color:#F92672">await</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">import</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">&#39;react-leaflet&#39;</span><span style="color:#F8F8F2">)).Marker)</span></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LazyMarkerCluster </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">lazy</span><span style="color:#F8F8F2">(</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">async</span><span style="color:#F8F8F2"> () </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span><span style="color:#F92672">await</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">import</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">&#39;./LeafletMap&#39;</span><span style="color:#F8F8F2">)).MarkerCluster</span></span>
+<span class="line"><span style="color:#F8F8F2">)</span></span></code></pre>
+<p>In the same file, declare a new component as follows:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">type</span><span style="color:#F8F8F2"> { MapOptions } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;leaflet&#39;</span></span>
+<span class="line"><span style="color:#88846F">// React: import type { FC } from &#39;react&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">type</span><span style="color:#F8F8F2"> { FunctionalComponent } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;preact&#39;</span></span>
+<span class="line"><span style="color:#88846F">// React: import React, { Suspense, lazy } from &#39;react&#39;</span></span>
+<span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { Suspense, lazy } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;preact/compat&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LeafletMapWithClusters</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">FunctionalComponent</span><span style="color:#F8F8F2">&lt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  {</span></span>
+<span class="line"><span style="color:#F8F8F2">    center</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> [</span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">, </span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">]</span></span>
+<span class="line"><span style="color:#F8F8F2">    markers</span><span style="color:#F92672">:</span><span style="color:#F8F8F2"> [</span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">, </span><span style="color:#66D9EF;font-style:italic">number</span><span style="color:#F8F8F2">][]</span></span>
+<span class="line"><span style="color:#F8F8F2">  } </span><span style="color:#F92672">&amp;</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E;text-decoration:underline">MapOptions</span></span>
+<span class="line"><span style="color:#F8F8F2">&gt; </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> ({ </span><span style="color:#FD971F;font-style:italic">center</span><span style="color:#F8F8F2">, </span><span style="color:#FD971F;font-style:italic">markers</span><span style="color:#F8F8F2">, </span><span style="color:#F92672">...</span><span style="color:#FD971F;font-style:italic">options</span><span style="color:#F8F8F2"> }) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> {</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">return</span><span style="color:#F8F8F2"> (</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;</span><span style="color:#66D9EF;font-style:italic">Suspense</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">fallback</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">&lt;</span><span style="color:#F92672">div</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">className</span><span style="color:#F92672">=</span><span style="color:#E6DB74">&quot;h-[200px]&quot;</span><span style="color:#F8F8F2"> /&gt;</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">      &lt;</span><span style="color:#66D9EF;font-style:italic">LazyLeafletMap</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">center</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">center</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">zoom</span><span style="color:#F92672">={</span><span style="color:#AE81FF">13</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">{...</span><span style="color:#F8F8F2">options</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">        &lt;</span><span style="color:#66D9EF;font-style:italic">Suspense</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">fallback</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">&lt;&gt;&lt;/&gt;</span><span style="color:#F92672">}</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">          &lt;</span><span style="color:#66D9EF;font-style:italic">LazyMarkerCluster</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">            </span><span style="color:#F92672">{</span><span style="color:#F8F8F2">markers.</span><span style="color:#A6E22E">map</span><span style="color:#F8F8F2">((</span><span style="color:#FD971F;font-style:italic">position</span><span style="color:#F8F8F2">, </span><span style="color:#FD971F;font-style:italic">index</span><span style="color:#F8F8F2">) </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span></span>
+<span class="line"><span style="color:#F8F8F2">              &lt;</span><span style="color:#66D9EF;font-style:italic">LazyMarker</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">key</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">index</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">position</span><span style="color:#F92672">={</span><span style="color:#F8F8F2">position</span><span style="color:#F92672">}</span><span style="color:#F8F8F2"> /&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">            ))</span><span style="color:#F92672">}</span></span>
+<span class="line"><span style="color:#F8F8F2">          &lt;/</span><span style="color:#66D9EF;font-style:italic">LazyMarkerCluster</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">        &lt;/</span><span style="color:#66D9EF;font-style:italic">Suspense</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">      &lt;/</span><span style="color:#66D9EF;font-style:italic">LazyLeafletMap</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">    &lt;/</span><span style="color:#66D9EF;font-style:italic">Suspense</span><span style="color:#F8F8F2">&gt;</span></span>
+<span class="line"><span style="color:#F8F8F2">  )</span></span>
+<span class="line"><span style="color:#F8F8F2">}</span></span></code></pre>
+<p>Update all usages of our initial map component to use the newly created component, and you’re good to go!
+… unless you’re using Next.js or Astro.
+If that’s the case, I still got you covered.
+Just keep reading!</p>
+<h3 id="astro">Astro<a aria-hidden="true" tabIndex="-1" href="#astro"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Astro</span></a></h3>
+<p>With Astro, you also need to update the usage of your lazy components, to include <code>client:only=&quot;preact&quot;</code> (or <code>client:only=&quot;react&quot;</code> depending on your setup).
+For example, an import of the first example map in this <code>.mdx</code> blog looks like this:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> { LeafletMap } </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;../../components/blog/examples/LeafletMap.lazy.tsx&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F8F8F2">&lt;</span><span style="color:#66D9EF;font-style:italic">LeafletMap</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">client</span><span style="color:#F8F8F2">:</span><span style="color:#A6E22E">only</span><span style="color:#F92672">=</span><span style="color:#E6DB74">&quot;preact&quot;</span><span style="color:#F8F8F2"> /&gt;</span></span></code></pre>
+<blockquote>
+<p>Note: At the time of writing, Astro may throw an error when importing your Preact component this way, see <a href="https://github.com/withastro/astro/issues/3833" target="_blank" rel="noreferrer">withastro/astro#3833</a>.
+As described <a href="https://github.com/withastro/astro/issues/3833#issuecomment-1175827464" target="_blank" rel="noreferrer">here</a>, a workaround is importing <code>preact</code> in the offending file.</p>
+</blockquote>
+<h3 id="nextjs">Next.js<a aria-hidden="true" tabIndex="-1" href="#nextjs"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Next.js</span></a></h3>
+<p>Making Leaflet work with Next.js is not much different.
+Instead of using React’s <code>lazy</code>, we can make use of Next’s <code>dynamic</code> with <code>ssr: false</code> to skip rendering Leaflet components on the server:</p>
+<pre class="astro-code" style="background-color:#272822;overflow-x:auto"><code><span class="line"><span style="color:#F92672">import</span><span style="color:#F8F8F2"> dynamic </span><span style="color:#F92672">from</span><span style="color:#F8F8F2"> </span><span style="color:#E6DB74">&#39;next/dynamic&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LazyMap </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">dynamic</span><span style="color:#F8F8F2">(() </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">import</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">&#39;./LeafletMap&#39;</span><span style="color:#F8F8F2">), { ssr: </span><span style="color:#AE81FF">false</span><span style="color:#F8F8F2"> })</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LazyMarker </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">dynamic</span><span style="color:#F8F8F2">(</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">async</span><span style="color:#F8F8F2"> () </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span><span style="color:#F92672">await</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">import</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">&#39;react-leaflet&#39;</span><span style="color:#F8F8F2">)).Marker,</span></span>
+<span class="line"><span style="color:#F8F8F2">  {</span></span>
+<span class="line"><span style="color:#F8F8F2">    ssr: </span><span style="color:#AE81FF">false</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">  }</span></span>
+<span class="line"><span style="color:#F8F8F2">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F92672">export</span><span style="color:#F8F8F2"> </span><span style="color:#66D9EF;font-style:italic">const</span><span style="color:#F8F8F2"> LazyMarkerCluster </span><span style="color:#F92672">=</span><span style="color:#F8F8F2"> </span><span style="color:#A6E22E">dynamic</span><span style="color:#F8F8F2">(</span></span>
+<span class="line"><span style="color:#F8F8F2">  </span><span style="color:#F92672">async</span><span style="color:#F8F8F2"> () </span><span style="color:#66D9EF;font-style:italic">=&gt;</span><span style="color:#F8F8F2"> (</span><span style="color:#F92672">await</span><span style="color:#F8F8F2"> </span><span style="color:#F92672">import</span><span style="color:#F8F8F2">(</span><span style="color:#E6DB74">&#39;./LeafletMap&#39;</span><span style="color:#F8F8F2">)).MarkerCluster,</span></span>
+<span class="line"><span style="color:#F8F8F2">  {</span></span>
+<span class="line"><span style="color:#F8F8F2">    ssr: </span><span style="color:#AE81FF">false</span><span style="color:#F8F8F2">,</span></span>
+<span class="line"><span style="color:#F8F8F2">  }</span></span>
+<span class="line"><span style="color:#F8F8F2">)</span></span></code></pre>
+<p>Now, all the <code>&lt;Lazy...&gt;</code> components can be used even without <code>&lt;Suspense&gt;</code> in any other component or page.</p>
+<h2 id="conclusion">Conclusion<a aria-hidden="true" tabIndex="-1" href="#conclusion"><span class="anchor-icon" aria-hidden="true"><svg width="16" height="16" version="1.1" viewBox="0 0 16 16" xlmns="http://www.w3.org/2000/svg"><path fillRule="evenodd" fill="currentcolor" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></span><span class="sr-only" is:raw="true">Section titled Conclusion</span></a></h2>
+<p>Leaflet and <code>react-leaflet</code> are powerful libraries for working with OpenStreetMap.
+With some tweaking regarding icon configurations, lazy loading, and custom providers, they enable great looking and interactive maps on any React environment.</p>
+<p>Markers in combination with marker clusters make it possible to render large amounts of locations with good performance and usability in mind.</p>
+<p>For an implementation in a real project, see <a href="https://wiener-time.vercel.app/map" target="_blank" rel="noreferrer">WienerTime’s map of public transit stations</a>.</p>
+  </article>
+</main>
+    <footer class="surface text-sm border-t shadow-none px-2 py-8 children:px-2 flex flex-row gap-0 items-start justify-center children:flex children:flex-col [&>*>*:first-child]:mb-4 [&>*>*:not(:first-child)]:py-2 [&>*>*:not(:first-child)]:w-fit children:w-1/3 children:max-w-[10rem]">
+  <div>
+    <span>Legal</span>
+    <a href="/impressum" rel="prefetch" lang="de">Impressum</a>
+    <a href="/datenschutzerklaerung" rel="prefetch" style="hyphens: auto; word-wrap: anywhere;" lang="de">
+      Datenschutzerklärung
+    </a>
+    <a href="/legal-notice" rel="prefetch">Legal Notice</a>
+    <span class="text-lighter">
+      2022 &copy; Jan M&uuml;ller
+    </span>
+  </div>
+  <div>
+    <span>Resources</span>
+    <a href="/rss.xml"> RSS Feed</a>
+    <a href="https://github.com/DerYeger/jan-mueller" rel="noreferrer" target="_blank">
+      Source
+      <svg viewBox="0 0 24 24" class="ml-1 mb-[0.125em] h-[1em] w-[1em] inline" astro-icon="ic:round-open-in-new"><path fill="currentColor" d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h5c.55 0 1-.45 1-1s-.45-1-1-1H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-.55-.45-1-1-1s-1 .45-1 1v5c0 .55-.45 1-1 1zM14 4c0 .55.45 1 1 1h2.59l-9.13 9.13a.996.996 0 1 0 1.41 1.41L19 6.41V9c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1z"/></svg>
+    </a>
+    <script>(self.Astro=self.Astro||{}).idle=t=>{const e=async()=>{await(await t())()};"requestIdleCallback"in window?window.requestIdleCallback(e):setTimeout(e,200)},window.dispatchEvent(new Event("astro:idle"));</script><astro-island uid="yd0cf" component-url="/ViewCounter.c8bd0616.js" component-export="default" renderer-url="/client.f1d83173.js" props="{}" ssr="" client="idle" before-hydration-url="data:text/javascript;charset=utf-8,//[no before-hydration script]" opts="{&quot;name&quot;:&quot;ViewCounter&quot;,&quot;value&quot;:true}" await-children=""><span class="text-lighter">0 views</span></astro-island>
+  </div>
+  <div>
+    <span>Contact</span>
+    <a href="https://github.com/DerYeger" rel="noreferrer" target="_blank">
+          GitHub
+          <svg viewBox="0 0 24 24" class="ml-1 mb-[0.125em] h-[1em] w-[1em] inline" astro-icon="ic:round-open-in-new"><path fill="currentColor" d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h5c.55 0 1-.45 1-1s-.45-1-1-1H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-.55-.45-1-1-1s-1 .45-1 1v5c0 .55-.45 1-1 1zM14 4c0 .55.45 1 1 1h2.59l-9.13 9.13a.996.996 0 1 0 1.41 1.41L19 6.41V9c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1z"/></svg>
+        </a><a href="https://www.linkedin.com/in/jan-müller-644144249/" rel="noreferrer" target="_blank">
+          LinkedIn
+          <svg viewBox="0 0 24 24" class="ml-1 mb-[0.125em] h-[1em] w-[1em] inline" astro-icon="ic:round-open-in-new"><path fill="currentColor" d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h5c.55 0 1-.45 1-1s-.45-1-1-1H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-.55-.45-1-1-1s-1 .45-1 1v5c0 .55-.45 1-1 1zM14 4c0 .55.45 1 1 1h2.59l-9.13 9.13a.996.996 0 1 0 1.41 1.41L19 6.41V9c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1z"/></svg>
+        </a><a href="https://www.xing.com/profile/Jan_Mueller1092/cv" rel="noreferrer" target="_blank">
+          XING
+          <svg viewBox="0 0 24 24" class="ml-1 mb-[0.125em] h-[1em] w-[1em] inline" astro-icon="ic:round-open-in-new"><path fill="currentColor" d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h5c.55 0 1-.45 1-1s-.45-1-1-1H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-.55-.45-1-1-1s-1 .45-1 1v5c0 .55-.45 1-1 1zM14 4c0 .55.45 1 1 1h2.59l-9.13 9.13a.996.996 0 1 0 1.41 1.41L19 6.41V9c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1z"/></svg>
+        </a><a href="https://twitter.com/DerYeger" rel="noreferrer" target="_blank">
+          Twitter
+          <svg viewBox="0 0 24 24" class="ml-1 mb-[0.125em] h-[1em] w-[1em] inline" astro-icon="ic:round-open-in-new"><path fill="currentColor" d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h5c.55 0 1-.45 1-1s-.45-1-1-1H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-.55-.45-1-1-1s-1 .45-1 1v5c0 .55-.45 1-1 1zM14 4c0 .55.45 1 1 1h2.59l-9.13 9.13a.996.996 0 1 0 1.41 1.41L19 6.41V9c0 .55.45 1 1 1s1-.45 1-1V4c0-.55-.45-1-1-1h-5c-.55 0-1 .45-1 1z"/></svg>
+        </a>
+    <a href="mailto:mail@jan-mueller.at" title="Mail">Mail</a>
+  </div>
+</footer>
+  </body></html>
